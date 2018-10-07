@@ -1,0 +1,148 @@
+#!/usr/bin/env python
+
+import os
+import socket
+import subprocess
+import time
+
+import click
+
+# Import LightClient
+
+import sys
+import platform
+
+_firmware_path = ''
+
+# Bool to check whether we're running on MacOS (emulated) or Raspberry Pi
+_is_emulated = False
+
+
+def display_warning(msg):
+    print('\033[0;95m%s\033[0m' % msg)
+
+
+if platform.system() == 'Darwin':
+    _is_emulated = True
+
+    _firmware_path = '/Users/andres/projects/hackpack-four/hackpack-server'
+    display_warning(
+        '[Running MacOS test harness. Commands will function ' +
+        'where possible, and Hackpack-specific onboard hardware ' +
+        'will fail gracefully.]'
+    )
+
+else:
+    _firmware_path = '/home/pi/hackpack-server'
+
+sys.path.append(_firmware_path + '/drivers/leds/lib_python')
+
+from led_client import LEDClient
+
+@click.group()
+def app():
+    """
+    Hackpack v4 CLI
+    """
+
+    pass
+
+@app.command()
+def showlights():
+    """
+    Test harness for using the Python LED driver library. Shows white lights,
+    followed by none, followed by pink lights, followed by none.
+    """
+
+    click.echo('Displaying lightshow..')
+
+    litebrite = LEDClient()
+
+    litebrite.set_lights([
+        [20,20,20],
+        [20,20,20],
+        [20,20,20],
+        [20,20,20],
+        [20,20,20]
+    ])
+
+    time.sleep(0.5)
+    litebrite.clear()
+
+    time.sleep(0.5)
+    litebrite.set_lights([
+        [20,0,20],
+        [20,0,20],
+        [20,0,20],
+        [20,0,20],
+        [20,0,20]
+    ])
+
+    time.sleep(0.5)
+    litebrite.clear()
+
+    click.echo('Lightshow done.')
+
+@app.command()
+@click.argument('pattern')
+def lights(pattern):
+    """
+    Control the lights
+    """
+
+    try:
+        lightbar = LEDClient()
+        lightbar.pattern(pattern)
+    except:
+
+        display_warning('[Hardware not accessible]')
+
+
+@app.command()
+def enable_lightserver():
+    """
+    Requests activation of the socket server which communicates to the LED
+    hardware.
+    """
+
+    _enable_lightserver()
+
+@app.command()
+def disable_lightserver():
+    """
+    Forces a hard-teardown of the socket server which communicates to the LED
+    hardware
+    """
+
+    subprocess.call(['sudo pkill -f "%s/drivers/leds/open_lightsocket"' % _firmware_path], shell=True)
+
+@app.command()
+@click.argument('cmd')
+def comms(cmd):
+    """
+    Controls the local MQTT server
+    """
+
+    if cmd == 'enable':
+        _enable_comms()
+    elif cmd == 'disable':
+        _disable_comms()
+
+def _enable_comms():
+    subprocess.call(['node %s/comms/comms.js &' % _firmware_path], shell=True)
+
+def _disable_comms():
+    subprocess.call(['pkill -f "%s/comms/comms.js"' % _firmware_path], shell=True)
+
+# --------------------------------------------
+# HELPER METHODS
+# --------------------------------------------
+
+def _enable_lightserver():
+    subprocess.call(["sudo %s/drivers/leds/open_lightsocket &" % _firmware_path], shell=True)
+
+
+
+
+if __name__ == '__main__':
+    app()

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "unix-dgram": "^2.0.2"
   },
   "devDependencies": {},
   "scripts": {
