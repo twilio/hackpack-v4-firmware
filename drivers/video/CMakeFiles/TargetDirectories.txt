@@ -1,0 +1,3 @@
+/home/signal/fbcp-ili9341/CMakeFiles/rebuild_cache.dir
+/home/signal/fbcp-ili9341/CMakeFiles/edit_cache.dir
+/home/signal/fbcp-ili9341/CMakeFiles/fbcp-ili9341.dir

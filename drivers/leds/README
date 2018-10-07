@@ -1,0 +1,15 @@
+To compile:
+
+- Optional: Edit lightserver.c
+- Put lightserver.c and SConstruct in the rpi_ws281x directory
+- run: scons -Q
+- open_lightsocket is the executable
+
+To run the SERVER:
+- sudo /path/to/open_lightsocket
+- Use "-h" to see options
+
+To run the CLIENT:
+- python /path/to/lightclient.py
+- Use "-h" to see options
+- e.g. python lightclient.py -d 5 -r 3
