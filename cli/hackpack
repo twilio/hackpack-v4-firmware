@@ -25,7 +25,7 @@ def display_warning(msg):
 if platform.system() == 'Darwin':
     _is_emulated = True
 
-    _firmware_path = '/Users/andres/projects/hackpack-four/hackpack-server'
+    _firmware_path = '~/projects/hackpack-four/hackpack-server'
     display_warning(
         '[Running MacOS test harness. Commands will function ' +
         'where possible, and Hackpack-specific onboard hardware ' +
@@ -33,7 +33,7 @@ if platform.system() == 'Darwin':
     )
 
 else:
-    _firmware_path = '/home/pi/hackpack-server'
+    _firmware_path = '/home/pi/firmware'
 
 sys.path.append(_firmware_path + '/drivers/leds/lib_python')
 
