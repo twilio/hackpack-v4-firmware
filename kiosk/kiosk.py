@@ -42,8 +42,9 @@ if __name__ == '__main__':
     webview.create_window(
         "",
         #url="file:///home/pi/firmware/system_api/snake.htm",
-        url="../../hoppo/index.htm",
-        #url="http://frankpoth.info/content/pop-vlog/javascript/2017/009-control/control.html",
+        #url="../../hoppo/index.htm",
+        url="http://hackpack-hoppo.herokuapp.com",
+	#url="http://frankpoth.info/content/pop-vlog/javascript/2017/009-control/control.html",
         width=640,
         height=480,
         fullscreen=True,
