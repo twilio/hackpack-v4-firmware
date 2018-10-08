@@ -1,4 +1,4 @@
 
 
 
-npm --prefix /home/pi/firmware/comms install --silent
+sudo pip install -r /home/pi/firmware/kiosk/bin/requirements.txt
