@@ -39,9 +39,9 @@ class Api:
         return r
 
 
-def fileChecker():
+def file_monitor():
     while _fileMonitorActive:
-        time.sleep(3)
+        time.sleep(5)
         print 'Checking file..'
 
         f = open('/home/pi/config.txt', 'r')
@@ -54,7 +54,7 @@ def fileChecker():
 _threads = []
 
 if __name__ == '__main__':
-    t = threading.Thread(target=mqtt_start)
+    t = threading.Thread(target=file_monitor)
     _threads.append(t)
     t.start()
 
