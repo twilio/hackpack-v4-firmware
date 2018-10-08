@@ -47,12 +47,19 @@ def file_monitor():
         time.sleep(5)
         print 'Checking file..'
 
-        f = open('/home/pi/config.txt', 'r')
+        file_path = '/home/pi/config.txt'
 
-        if f.mode == 'r':
-            contents = f.read()
+        file_exists = os.path.isfile(file_path)
 
-            print('Contents of file: ' + contents)
+        if file_exists:
+            f = open('/home/pi/config.txt', 'r')
+
+            if f.mode == 'r':
+                contents = f.read()
+
+                print('Contents of file: ' + contents)
+
+                webview.load_url(contents)
 
 if __name__ == '__main__':
     t = threading.Thread(target=file_monitor)
