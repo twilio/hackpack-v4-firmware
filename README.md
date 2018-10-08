@@ -5,17 +5,17 @@ onboard screen, LEDs, and gamepad.
 
 ## Hardware
 
-### ONBOARD SCREEN
+### Onboard Screen
 
 tbd
 
 
-### ONBOARD LEDs
+### Onboard LEDs
 
 tbd
 
 
-###  ONBOARD GAMEPAD
+###  Onboard Gamepad
 
 tbd
 
