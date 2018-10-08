@@ -8,8 +8,8 @@ echo ""
 
 sudo apt-get update
 sudo apt-get install --no-install-recommends -y git
-sudo apt-get install nodejs
-sudo apt-get install npm
+sudo apt-get install --no-install-recommends -y nodejs
+sudo apt-get install --no-install-recommends -y npm
 sudo apt-get install --no-install-recommends -y chromium-browser
 
 
@@ -35,7 +35,7 @@ echo ""
 echo "(4 of 4) Installing Kiosk functionality..."
 echo ""
 
-sudo apt-get install libgtk-3-dev
+sudo apt-get install -y libgtk-3-dev
 sudo apt-get install --no-install-recommends -y midori
 sudo apt-get install --no-install-recommends -y scons
 sudo apt-get install --no-install-recommends -y swig
