@@ -7,8 +7,10 @@ sudo modprobe -i uinput
 sleep 1s
 
 # Init input drivers
+# We use the /home/pi/drivers dir we copied locally during install to avoid a git pull collision on an
+# actively in-use driver
 
-sudo python /home/pi/firmware/drivers/input/input_driver.py &
+sudo python /home/pi/drivers/input/input_driver.py &
 sleep 1s
 
 # Init video driver GPIO
@@ -28,15 +30,15 @@ sleep 1s
 
 # Activate framebuffer
 
-sudo /home/pi/firmware/drivers/video/fbcp-ili9341 &
+sudo /home/pi/drivers/video/fbcp-ili9341 &
 sleep 1s
 
 # Activate LEDs
 
 sudo /home/pi/firmware/bin/lights.sh
-sudo /home/pi/firmware/drivers/leds/open_lightsocket &
+sudo /home/pi/drivers/leds/open_lightsocket &
 sleep 1s
 
 # Display startup LED sequence
 
-python /home/pi/firmware/drivers/leds/light_client/lightclient.py
+python /home/pi/drivers/leds/light_client/lightclient.py
