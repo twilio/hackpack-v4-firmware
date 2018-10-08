@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Install prerequisites
+
+sudo pip install python-uinput
 
 # Overlay /boot/config.txt with Hackpack config
 
