@@ -1,11 +1,9 @@
 import os
 import sys
 import subprocess
-import threading
 import time
 
 import webview
-import paho.mqtt.client as mqtt
 
 
 _firmware_path = '/home/pi/firmware'
@@ -45,25 +43,7 @@ def mqtt_on_message(client, userdata, msg):
     print("Message from MQTT server: " + msg.topic+" "+str(msg.payload))
 
 
-client = mqtt.Client()
-
-def mqtt_start():
-    time.sleep(0.1)
-
-    client.loop_forever()
-
-
 if __name__ == '__main__':
-    client.on_connect = mqtt_on_connect
-    client.on_message = mqtt_on_message
-
-    client.connect("localhost", 1883, 60)
-
-    t = threading.Thread(target=mqtt_start)
-    t.start()
-
-
-
     api = Api()
 
     webview.create_window(
@@ -71,7 +51,7 @@ if __name__ == '__main__':
         #url="file:///home/pi/firmware/system_api/snake.htm",
         #url="../../hoppo/index.htm",
         url="http://hackpack-hoppo.herokuapp.com",
-	#url="http://frankpoth.info/content/pop-vlog/javascript/2017/009-control/control.html",
+        #url="http://frankpoth.info/content/pop-vlog/javascript/2017/009-control/control.html",
         width=640,
         height=480,
         fullscreen=True,
