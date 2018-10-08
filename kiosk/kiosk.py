@@ -41,8 +41,15 @@ class Api:
 
 def fileChecker():
     while _fileMonitorActive:
-        time.sleep(1)
+        time.sleep(3)
         print 'Checking file..'
+
+        f = open('/home/pi/config.txt', 'r')
+
+        if f.mode == 'r':
+            contents = f.read()
+
+            print('Contents of file: ' + contents)
 
 _threads = []
 
