@@ -18,7 +18,7 @@ echo ""
 echo "Installing wifi networks..."
 echo ""
 
-sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /boot/wpa_supplicant.conf
+# sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /boot/wpa_supplicant.conf
 
 # Configure boot-time background image
 
