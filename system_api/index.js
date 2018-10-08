@@ -29,4 +29,8 @@ var interval = setInterval(function(){
 
 app.get('/', (req,res) => res.send('Hello world'))
 
+app.get('/include.js', function(req,res){
+	res.send('asdf');
+});
+
 app.listen(port, () => console.log('Example  app listening on port $(port)!'))

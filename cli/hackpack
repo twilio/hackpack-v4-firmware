@@ -118,21 +118,36 @@ def disable_lightserver():
 
 @app.command()
 @click.argument('cmd')
-def comms(cmd):
+def api(cmd):
     """
-    Controls the local MQTT server
+    Controls the system API
     """
 
-    if cmd == 'enable':
-        _enable_comms()
-    elif cmd == 'disable':
-        _disable_comms()
+    if cmd == 'start':
+        _enable_system_api()
+    elif cmd == 'stop':
+        _disable_system_api()
 
-def _enable_comms():
-    subprocess.call(['node %s/comms/comms.js &' % _firmware_path], shell=True)
+@app.command()
+@click.argument('cmd')
+def kiosk(cmd):
+    if cmd == 'start':
+        _enable_kiosk()
+    elif cmd == 'stop':
+        _disable_kiosk()
 
-def _disable_comms():
-    subprocess.call(['pkill -f "%s/comms/comms.js"' % _firmware_path], shell=True)
+def _enable_system_api():
+    subprocess.call(['node %s/system_api/index.js &' % _firmware_path], shell=True)
+
+def _disable_system_api():
+    subprocess.call(['pkill -f "%s/system_api/index.js"' % _firmware_path], shell=True)
+
+def _enable_kiosk():
+    subprocess.call(['python %s/kiosk/kiosk.py &' % _firmware_path], shell=True)
+
+def _disable_kiosk():
+    subprocess.call(['pkill -f "%s/kiosk/kiosk.py"' % _firmware_path], shell=True)
+
 
 # --------------------------------------------
 # HELPER METHODS
