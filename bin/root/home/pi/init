@@ -1,0 +1,71 @@
+#!/bin/sh
+
+# Driver setup 
+
+# Echo 'Some simple permissions (oxymoron?) are preventing the GPIO inits'
+# We can probably remove these two lines as long as this is run as root
+# sudo chgrp -R pi /sys/class/gpio
+# sudo chmod -R g+rw /sys/class/gpio
+
+# Start the kiosk browser (pyapi)
+python /home/pi/hackpack-server/pybin/kiosk.py
+# /usr/bin/midori -e Fullscreen -e Navigationbar -a /home/pi/hackpack-server/out/index.html
+# chromium-browser --ignore-certificate-errors --disable-infobars --disable-session-crashed-bubble --no-default-browser-check --no-first-run --kiosk '/home/pi/hackpack-server/out/index.html'
+
+
+# Unbreakable loop
+# while true; do
+# 	python /home/pi/hackpack-server/pybin/api.py
+# done
+
+# JIC
+sleep 7s
+
+# Driver probe
+sudo modprobe -i uinput
+
+# JIC
+sleep 1s
+
+# Input drivers
+sudo python /home/pi/drivers/input/input_driver.py &
+
+
+# Display drivers
+# sudo /home/pi/bin/init/display.sh#!/bin/sh
+
+# Video Driver setup
+sleep 1s
+sudo echo "5" > /sys/class/gpio/export
+
+# GPIO direction
+sleep 1s
+sudo echo "out" > /sys/class/gpio/gpio5/direction
+
+# Active low, set to 0 to enable
+sleep 1s
+sudo echo "0" > /sys/class/gpio/gpio5/value
+sleep 1s
+
+
+
+# Framebuffer
+sudo /home/pi/drivers/video/fbcp-ili9341 &
+
+
+# Lights 
+sudo /home/pi/bin/init/lights.sh
+sudo /home/pi/drivers/leds/open_lightsocket &
+
+# Display startup lights
+sleep .1s
+python /home/pi/drivers/leds/light_client/lightclient.py
+
+# NOT WORKING - (doesn't work for gpio display) vvv
+# xset -dpms # disable DPMS (Energy Star) features.
+# xset s off # disable screen saver
+# xset s noblank # don't blank the video device
+# NOT WORKING ^^^
+
+# matchbox-window-manager & # Ditched for full LXDE
+

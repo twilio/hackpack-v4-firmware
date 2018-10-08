@@ -1,0 +1,32 @@
+#
+# HACKPACK V4 FIRMWARE BOOTCONFIG
+#
+# ------------------------------------------------------------------------------------
+
+
+# Set screen size to 640x480
+
+framebuffer_width=640
+framebuffer_height=480
+
+# Enable high-current usb devices
+
+max_usb_current=1
+
+# Add TTY to serial header
+enable_uart=1
+
+# Disable overscan to remove border of unusable black pixels on screen
+
+disable_overscan=1
+
+# The display utilizes SPI, but not spidev
+
+dtoverlay=spi1-3cs
+
+sdtv_mode=1
+sdtv_aspect=1
+
+# Hijack PWM
+
+dtparam=audio=on
