@@ -136,6 +136,20 @@ def kiosk(cmd):
     elif cmd == 'stop':
         _disable_kiosk()
 
+@app.command()
+@click.argument('cmd')
+def comms(cmd):
+    if cmd == 'start':
+        _enable_comms()
+    elif cmd == 'stop':
+        _disable_comms()
+
+def _enable_comms():
+    subprocess.call(['node  %s/comms/comms.js &' % _firmware_path], shell=True)
+
+def _disable_comms():
+    subprocess.call(['pkill -f "%s/comms/comms.js"' % _firmware_path], shell=True)
+
 def _enable_system_api():
     subprocess.call(['node %s/system_api/index.js &' % _firmware_path], shell=True)
 
