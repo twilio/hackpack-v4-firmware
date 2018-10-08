@@ -38,6 +38,9 @@ class Api:
 
         return r
 
+_threads = []
+_fileMonitorActive = True
+
 
 def file_monitor():
     while _fileMonitorActive:
@@ -50,8 +53,6 @@ def file_monitor():
             contents = f.read()
 
             print('Contents of file: ' + contents)
-
-_threads = []
 
 if __name__ == '__main__':
     t = threading.Thread(target=file_monitor)
