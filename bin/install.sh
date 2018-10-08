@@ -55,5 +55,7 @@ sudo apt-get install --no-install-recommends -y matchbox
 sudo pip install pywebview[gtk3]
 
 echo ""
-echo "Finished installing Hackpack v4"
+echo "Finished installing Hackpack v4. Rebooting..."
 echo ""
+
+sudo shutdown -r now
