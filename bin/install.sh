@@ -3,7 +3,7 @@
 # Install basic system dependencies
 
 echo ""
-echo "(1 of 4) Installing system basics..."
+echo "(1 of 5) Installing system basics..."
 echo ""
 
 sudo apt-get update
@@ -13,10 +13,18 @@ sudo apt-get install --no-install-recommends -y npm
 sudo apt-get install --no-install-recommends -y chromium-browser
 
 
+# Run Driver install script
+
+echo ""
+echo "(2 of 5) Starting Hackpack Driver install..."
+echo ""
+
+sudo bash /home/pi/firmware/drivers/bin/install.sh
+
 # Run CLI install script
 
 echo ""
-echo "(2 of 4) Starting Hackpack CLI install..."
+echo "(3 of 5) Starting Hackpack CLI install..."
 echo ""
 
 sudo bash /home/pi/firmware/cli/bin/install.sh
@@ -24,7 +32,7 @@ sudo bash /home/pi/firmware/cli/bin/install.sh
 # Run System API install script
 
 echo ""
-echo "(3 of 4) Installing SYSTEM API..."
+echo "(4 of 5) Installing SYSTEM API..."
 echo ""
 
 sudo bash /home/pi/firmware/system_api/bin/install.sh
@@ -32,7 +40,7 @@ sudo bash /home/pi/firmware/system_api/bin/install.sh
 # Run Kiosk install
 
 echo ""
-echo "(4 of 4) Installing Kiosk functionality..."
+echo "(5 of 5) Installing Kiosk functionality..."
 echo ""
 
 sudo apt-get install -y libgtk-3-dev
