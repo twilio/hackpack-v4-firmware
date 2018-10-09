@@ -40,6 +40,7 @@ class Api:
 
 _threads = []
 _fileMonitorActive = True
+_current_url = 'http://hackpack-hoppo.herokuapp.com'
 
 
 def file_monitor():
@@ -55,11 +56,11 @@ def file_monitor():
             f = open('/home/pi/config.txt', 'r')
 
             if f.mode == 'r':
-                contents = f.read()
+                requested_url = f.read()
 
-                print('Contents of file: ' + contents)
-
-                webview.load_url(contents)
+                if requested_url != _current_url:
+                    _current_url = requested_url
+                    webview.load_url(contents)
 
 if __name__ == '__main__':
     t = threading.Thread(target=file_monitor)
@@ -72,7 +73,7 @@ if __name__ == '__main__':
         "",
         #url="file:///home/pi/firmware/system_api/snake.htm",
         #url="../../hoppo/index.htm",
-        url="http://hackpack-hoppo.herokuapp.com",
+        url=_current_url,
 	#url="http://frankpoth.info/content/pop-vlog/javascript/2017/009-control/control.html",
         width=640,
         height=480,
