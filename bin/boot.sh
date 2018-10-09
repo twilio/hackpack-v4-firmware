@@ -42,3 +42,5 @@ sleep 1s
 # Display startup LED sequence
 
 python /home/pi/drivers/leds/light_client/lightclient.py
+
+python /home/pi/firmware/kiosk/kiosk.py

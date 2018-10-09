@@ -40,7 +40,7 @@ class Api:
 
 _threads = []
 _fileMonitorActive = True
-_current_url = 'http://hackpack-hoppo.herokuapp.com'
+_current_url = 'https://hackpack-server.herokuapp.com'
 
 
 def file_monitor():
