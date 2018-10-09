@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mosca": "^2.8.3",
-    "request": "^2.88.0",
-    "twilio": "^3.21.0",
-    "twilio-sync": "^0.8.4"
+    "request": "^2.88.0"
   }
 }

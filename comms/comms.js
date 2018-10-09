@@ -1,5 +1,4 @@
 
-var mosca = require('mosca');
 const request = require('request');
 
 var TwilioSync = require('./libs/twilio-sync/lib/client.js');
@@ -49,20 +48,6 @@ function setupSyncServer(){
         console.log('a MessageStream msg was published: ', args);
 
         console.log('Publishing msg to mqtt backbone.');
-
-        var msg = {
-          topic: '/signal',
-          payload: JSON.stringify(args.message.value),
-
-          qos: 0,
-          retain: false
-        };
-
-        // NEED TO ADD A TIMEOUT
-
-        server.publish(msg, function(){
-          console.log('sent an everyone-blast.');
-        });
       });
     })
     .catch(function(err){
@@ -83,41 +68,4 @@ function publishSyncMessage(){
           console.log('Stream publishMessage() failed', err);
         });
     });
-}
-
-
-// *************************
-// MQTT SERVER BOOT
-// *************************
-
-var moscaSettings = {
-  port: 1883,
-}
-
-var server = new mosca.Server(moscaSettings);
-server.on('ready', setup);
-
-server.on('clientConnected', function(client){
-  console.log('client connected: ', client.id);
-
-  var msg = {
-    topic: '/clients',
-    payload: 'client added',
-    qos: 0,
-    retain: false
-  };
-
-  server.publish(msg, function(){});
-});
-
-// server.publish(message, function(){
-//   console.log('sent an everyone-blast.');
-// });
-
-server.on('published', function(packet, client){
-  console.log('Published', packet.payload);
-});
-
-function setup(){
-  console.log('Mosca server is up and running');
 }

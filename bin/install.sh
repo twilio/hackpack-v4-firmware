@@ -8,10 +8,12 @@ echo ""
 
 sudo apt-get update
 sudo apt-get install --no-install-recommends -y git
-sudo apt-get install --no-install-recommends -y nodejs
-sudo apt-get install --no-install-recommends -y npm
 sudo apt-get install --no-install-recommends -y chromium-browser
 
+# Install NodeJS
+
+sudo apt-get install --no-install-recommends -y nodejs
+sudo apt-get install --no-install-recommends -y npm
 
 # Run Driver install script
 
