@@ -52,6 +52,8 @@ def file_monitor():
 
         file_exists = os.path.isfile(file_path)
 
+        print('Current url: ' + _current_url)
+
         if file_exists:
             f = open('/home/pi/config.txt', 'r')
 
