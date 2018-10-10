@@ -64,7 +64,7 @@ def file_monitor():
 
                 if requested_url != _current_url:
                     _current_url = requested_url
-                    webview.load_url(contents)
+                    webview.load_url(_current_url)
 
 if __name__ == '__main__':
     t = threading.Thread(target=file_monitor)
