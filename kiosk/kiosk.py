@@ -5,7 +5,6 @@ import threading
 import time
 
 import webview
-import paho.mqtt.client as mqtt
 
 
 _firmware_path = '/home/pi/firmware'
