@@ -22,15 +22,11 @@ var interval = setInterval(function(){
 	client.on('error', console.error)
 	client.send(msg, 0, msg.length, SOCKETFILE)
 	client.close()
-}, 1000);
+}, 5000);
 
 
 
 
 app.get('/', (req,res) => res.send('Hello world'))
-
-app.get('/include.js', function(req,res){
-	res.send('asdf');
-});
 
 app.listen(port, () => console.log('Example  app listening on port $(port)!'))

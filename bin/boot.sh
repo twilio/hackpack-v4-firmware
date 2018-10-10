@@ -43,4 +43,6 @@ sleep 1s
 
 python /home/pi/drivers/leds/light_client/lightclient.py
 
+node /home/pi/firmware/system_api/index.js &
+
 python /home/pi/firmware/kiosk/kiosk.py
