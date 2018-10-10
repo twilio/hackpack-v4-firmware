@@ -43,6 +43,9 @@ _current_url = 'https://hackpack-server.herokuapp.com'
 
 
 def file_monitor():
+    global _fileMonitorActive
+    global _current_url
+
     while _fileMonitorActive:
         time.sleep(5)
         print 'Checking file..'
