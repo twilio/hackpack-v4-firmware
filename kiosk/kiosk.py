@@ -89,21 +89,21 @@ class Api:
 
     def getHardwareId(self, params):
         # Use subprocess.check_output if you expect a response
-        process = subprocess.check_output("sudo /home/pi/firmware/bin/system/io/getHardwareId.sh", stderr=subprocess.STDOUT, shell=True)
+        process = subprocess.check_output("sudo bash /home/pi/firmware/bin/system/io/getHardwareId.sh", stderr=subprocess.STDOUT, shell=True)
         response = {
             'message': str(process).rstrip()
         }
         return response
 
     def inputArrow(self, params):
-        process = subprocess.call("sudo /home/pi/firmware/bin/system/io/input_arrow.sh", stderr=subprocess.STDOUT, shell=True)
+        process = subprocess.call("sudo bash /home/pi/firmware/bin/system/io/input_arrow.sh", stderr=subprocess.STDOUT, shell=True)
         response = {
             'message': 'ok'
         }
         return response
 
     def inputCursor(self, params):
-        process = subprocess.call("sudo /home/pi/firmware/bin/system/io/input_cursor.sh", stderr=subprocess.STDOUT, shell=True)
+        process = subprocess.call("sudo bash /home/pi/firmware/bin/system/io/input_cursor.sh", stderr=subprocess.STDOUT, shell=True)
         response = {
             'message': 'ok'
         }
