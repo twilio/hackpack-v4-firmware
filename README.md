@@ -3,25 +3,35 @@
 Manages system-level components for the Hackpack v4 hardware drivers that manage the
 onboard screen, LEDs, and gamepad.
 
-## Hardware
+## Installation
 
-### Onboard Screen
+### Clone the Repo
 
-tbd
+To get started, clone this repo into /home/pi/firmware
 
+Once completed, run:
 
-### Onboard LEDs
+`sudo bash /home/pi/firmware/bin/install.sh`
 
-tbd
+## Functionality
 
+### Hardware
 
-###  Onboard Gamepad
-
-tbd
-
-
-## RESTful API
+#### Onboard Screen
 
 tbd
 
 
+#### Onboard LEDs
+
+tbd
+
+
+####  Onboard Gamepad
+
+tbd
+
+
+### RESTful API
+
+tbd

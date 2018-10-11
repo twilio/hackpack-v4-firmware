@@ -15,6 +15,7 @@ import sys
 import math
 import socket
 import fcntl
+import commands
 
 # Turn on flood of messages
 DEBUG = False
@@ -73,11 +74,20 @@ ts, up_down, left_right = -1, -1, -1
 
 # ILI9341 Settings...
 XY_REVERSED = True
-UPDOWN_INVERTED = True
-LEFTRIGHT_INVERTED = True
+UPDOWN_INVERTED = False
+LEFTRIGHT_INVERTED = False
+
+# To verify
+try:
+    TOUCH_CONF = commands.getstatusoutput("cat /etc/ili9341_touch.conf")
+    XY_REVERSED, UPDOWN_INVERTED, LEFTRIGHT_INVERTED = \
+        map(lambda x: bool(int(x)), list(TOUCH_CONF[1]))
+    print(XY_REVERSED, UPDOWN_INVERTED, LEFTRIGHT_INVERTED)
+except:
+    pass
 
 # System Resolution
-XRES, YRES = 320, 240
+XRES, YRES = 640, 480
 
 # Touch ADC Sensitivity
 # 12-Bit
