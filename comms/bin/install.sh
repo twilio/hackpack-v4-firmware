@@ -1,11 +1,11 @@
 
 # Install dependencies for twilio-sync
-# Needs to be installed manually,
-# as we're manually including the library
-# itself in the application stack, since it's
-# traditionally a front-end Javascript library
-# but happens to run in Node gracefully
-
+#
+# Needs to be installed manually, as we're manually
+# including the library itself in the application
+# stack, since it's traditionally a front-end
+# Javascript library but happens to run in Node
+# gracefully
 
 sudo npm install twilio-notifications --prefix /home/pi/firmware/comms --silent
 sudo npm install twilsock --prefix /home/pi/firmware/comms --silent

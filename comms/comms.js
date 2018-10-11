@@ -30,8 +30,12 @@ function startSyncPipeline(){
       if( err ){
         console.log('Error requesting Sync token: ', err);
       } else {
-        syncToken = body.token;
-        setupSyncServer()
+        try {
+          syncToken = body.token;
+          setupSyncServer();
+        } catch(ex){
+          console.log('Error in sync token response: ' + ex);
+        }
       }
     }
   );

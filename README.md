@@ -5,13 +5,18 @@ onboard screen, LEDs, and gamepad.
 
 ## Installation
 
-### Clone the Repo
+### Get the codebase
 
-To get started, clone this repo into /home/pi/firmware
+To get started, clone this repo into `/home/pi/firmware`. The codebase depends on
+being installed at /home/pi/firmware currently.
 
-Once completed, run:
+Once cloned locally, run:
 
 `sudo bash /home/pi/firmware/bin/install.sh`
+
+This master install script, in turn, runs the install
+scripts for each system component - drivers, kiosk,
+and comms.
 
 ## Functionality
 
@@ -19,8 +24,8 @@ Once completed, run:
 
 #### Onboard Screen
 
-tbd
-
+Your Hackpack v4 is equipped with a capacitive-touch
+screen
 
 #### Onboard LEDs
 
@@ -29,9 +34,11 @@ tbd
 
 ####  Onboard Gamepad
 
-tbd
+The `/drivers` directory contains all functionality
+that drives the custom inputs on the device - namely
+the joystick and control buttons.
 
 
-### RESTful API
+### Communications Pipeline
 
 tbd
