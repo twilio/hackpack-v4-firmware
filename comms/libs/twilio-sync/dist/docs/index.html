@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Client.html">Client</a></li><li><a href="Document.html">Document</a></li><li><a href="List.html">List</a></li><li><a href="ListItem.html">ListItem</a></li><li><a href="Map.html">Map</a></li><li><a href="MapItem.html">MapItem</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Stream.html">Stream</a></li><li><a href="StreamMessage.html">StreamMessage</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Client.html#event:connectionStateChanged">Client#event:connectionStateChanged</a></li><li><a href="Client.html#event:tokenAboutToExpire">Client#event:tokenAboutToExpire</a></li><li><a href="Client.html#event:tokenExpired">Client#event:tokenExpired</a></li><li><a href="Document.html#event:removed">Document#event:removed</a></li><li><a href="Document.html#event:updated">Document#event:updated</a></li><li><a href="List.html#event:itemAdded">List#event:itemAdded</a></li><li><a href="List.html#event:itemRemoved">List#event:itemRemoved</a></li><li><a href="List.html#event:itemUpdated">List#event:itemUpdated</a></li><li><a href="List.html#event:removed">List#event:removed</a></li><li><a href="Map.html#event:itemAdded">Map#event:itemAdded</a></li><li><a href="Map.html#event:itemRemoved">Map#event:itemRemoved</a></li><li><a href="Map.html#event:itemUpdated">Map#event:itemUpdated</a></li><li><a href="Map.html#event:removed">Map#event:removed</a></li><li><a href="Stream.html#event:messagePublished">Stream#event:messagePublished</a></li><li><a href="Stream.html#event:removed">Stream#event:removed</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>Twilio Sync JavaScript client library</h1><p>Twilio Sync is Twilio&apos;s state synchronization service, offering two-way real-time communication between browsers, mobiles, and the cloud.
+Visit our official site for more details: <a href="https://www.twilio.com/sync">https://www.twilio.com/sync</a></p>
+<h2>Installation</h2><h3>NPM</h3><pre class="prettyprint source"><code>npm install --save twilio-sync</code></pre><p>Using this method, you can <code>require</code> twilio-sync.js like so:</p>
+<pre class="prettyprint source"><code>var SyncClient = require(&apos;twilio-sync&apos;);
+var syncClient = new SyncClient(token);</code></pre><h3>CDN</h3><p>Releases of twilio-sync.js are hosted on a CDN, and you can include these
+directly in your web app using a &lt;script&gt; tag.</p>
+<pre class="prettyprint source"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;//media.twiliocdn.com/sdk/js/sync/v0.8/twilio-sync.min.js&quot;&gt;&lt;/script&gt;</code></pre><p>Using this method, twilio-sync.js will set a browser global:</p>
+<pre class="prettyprint source"><code>var syncClient = new Twilio.Sync.Client(token);</code></pre><h2>Usage</h2><p>To use the library, you need to generate an <a href="https://www.twilio.com/docs/sync/identity-and-access-tokens">Access Token</a> and pass it to the Sync Client constructor.
+The Twilio SDK Starter applications for <a href="https://github.com/TwilioDevEd/sdk-starter-node">Node.js</a>, <a href="https://github.com/TwilioDevEd/sdk-starter-java">Java</a>, <a href="https://github.com/TwilioDevEd/sdk-starter-php">PHP</a>, <a href="https://github.com/TwilioDevEd/sdk-starter-ruby">Ruby</a>, <a href="https://github.com/TwilioDevEd/sdk-starter-python">Python</a>, <a href="https://github.com/TwilioDevEd/sdk-starter-csharp">C#</a> provide an easy way to set up a token generator locally.
+Alternatively, you can set up a <a href="https://www.twilio.com/console/runtime/functions/manage">Twilio Function based on the <em>Sync Access Token</em> template</a>.    </p>
+<pre class="prettyprint source"><code>// Obtain a JWT access token: https://www.twilio.com/docs/sync/identity-and-access-tokens
+var token = &apos;&lt;your-access-token-here&gt;&apos;;
+var syncClient = new Twilio.Sync.Client(token);
+
+// Open a Document by unique name and update its value
+syncClient.document(&apos;MyDocument&apos;)
+  .then(function(document) {
+    // Listen to updates on the Document
+    document.on(&apos;updated&apos;, function(event) {
+      console.log(&apos;Received Document update event. New value:&apos;, event.value);
+    });
+
+    // Update the Document value
+    var newValue = { temperature: 23 };
+    return document.set(newValue);
+  })
+  .then(function(updateResult) {
+    console.log(&apos;The Document was successfully updated&apos;, updateResult)
+  })
+  .catch(function(error) {
+    console.error(&apos;Unexpected error&apos;, error)
+  });</code></pre><p>For more code examples for Documents and other Sync objects, refer to the <a href="https://media.twiliocdn.com/sdk/js/sync/v0.8/docs">SDK API Docs</a>:</p>
+<ul>
+<li><a href="https://media.twiliocdn.com/sdk/js/sync/v0.8/docs/Document.html">Documents</a></li>
+<li><a href="https://media.twiliocdn.com/sdk/js/sync/v0.8/docs/List.html">Lists</a></li>
+<li><a href="https://media.twiliocdn.com/sdk/js/sync/v0.8/docs/Map.html">Maps</a></li>
+<li><a href="https://media.twiliocdn.com/sdk/js/sync/v0.8/docs/Stream.html">Message Streams</a></li>
+</ul>
+<h2>Changelog</h2><p>See this <a href="https://www.twilio.com/docs/sync/javascript-sdk-changelog#version-history-changelog">link</a>.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#xD7;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-07-05T09:03:11+00:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+
+</body></html>

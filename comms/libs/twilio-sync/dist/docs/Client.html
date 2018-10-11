@@ -1,0 +1,2303 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Class: Client</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Client.html">Client</a></li><li><a href="Document.html">Document</a></li><li><a href="List.html">List</a></li><li><a href="ListItem.html">ListItem</a></li><li><a href="Map.html">Map</a></li><li><a href="MapItem.html">MapItem</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Stream.html">Stream</a></li><li><a href="StreamMessage.html">StreamMessage</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Client.html#event:connectionStateChanged">Client#event:connectionStateChanged</a></li><li><a href="Client.html#event:tokenAboutToExpire">Client#event:tokenAboutToExpire</a></li><li><a href="Client.html#event:tokenExpired">Client#event:tokenExpired</a></li><li><a href="Document.html#event:removed">Document#event:removed</a></li><li><a href="Document.html#event:updated">Document#event:updated</a></li><li><a href="List.html#event:itemAdded">List#event:itemAdded</a></li><li><a href="List.html#event:itemRemoved">List#event:itemRemoved</a></li><li><a href="List.html#event:itemUpdated">List#event:itemUpdated</a></li><li><a href="List.html#event:removed">List#event:removed</a></li><li><a href="Map.html#event:itemAdded">Map#event:itemAdded</a></li><li><a href="Map.html#event:itemRemoved">Map#event:itemRemoved</a></li><li><a href="Map.html#event:itemUpdated">Map#event:itemUpdated</a></li><li><a href="Map.html#event:removed">Map#event:removed</a></li><li><a href="Stream.html#event:messagePublished">Stream#event:messagePublished</a></li><li><a href="Stream.html#event:removed">Stream#event:removed</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: Client</h1>
+<section>
+
+<header>
+    
+        <h2>
+        Client
+        </h2>
+        
+            <div class="class-description">Client for the Twilio Sync service.</div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Client"><span class="type-signature"></span>new Client(token [, options])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Twilio access token.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Client.html#ClientOptions">Client#ClientOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Options to customize the Client.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>connectionState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Client.html#ConnectionState">Client#ConnectionState</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Contains current service connection state.
+Valid options are [&apos;connecting&apos;, &apos;connected&apos;, &apos;disconnecting&apos;, &apos;disconnected&apos;, &apos;denied&apos;, &apos;error&apos;].</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// Using NPM
+var SyncClient = require(&apos;twilio-sync&apos;);
+var syncClient = new SyncClient(token, { logLevel: &apos;debug&apos; });
+
+// Using CDN
+var SyncClient = new Twilio.Sync.Client(token, { logLevel: &apos;debug&apos; });</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="version">
+    <h4 id="version"><span class="type-signature">&lt;readonly&gt; </span>version<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current version of Sync client.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="document"><span class="type-signature">&lt;async&gt; </span>document( [arg])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Read or create a Sync Document.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type"><a href="Client.html#OpenOptions">Client#OpenOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">One of:
+<li>Unique name or SID identifying a Sync Document - opens a Document with the given identifier or creates one if it does not exist.</li>
+<li>none - creates a new Document with a randomly assigned SID and no unique name.</li>
+<li><a href="Client.html#OpenOptions">Client#OpenOptions</a> object for more granular control.</li></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    a promise which resolves after the Document is successfully read (or created).
+This promise may reject if the Document could not be created or if this endpoint lacks the necessary permissions to access it.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Document.html">Document</a>&gt;</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">syncClient.document(&apos;MyDocument&apos;)
+  .then(function(document) {
+    console.log(&apos;Successfully opened a Document. SID: &apos; + document.sid);
+    document.on(&apos;updated&apos;, function(event) {
+      console.log(&apos;Received updated event: &apos;, event);
+    });
+  })
+  .catch(function(error) {
+    console.log(&apos;Unexpected error&apos;, error);
+  });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="list"><span class="type-signature">&lt;async&gt; </span>list( [arg])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Read or create a Sync List.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type"><a href="Client.html#OpenOptions">Client#OpenOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">One of:
+<li>Unique name or SID identifying a Sync List - opens a List with the given identifier or creates one if it does not exist.</li>
+<li>none - creates a new List with a randomly assigned SID and no unique name.</li>
+<li><a href="Client.html#OpenOptions">Client#OpenOptions</a> object for more granular control.</li></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    a promise which resolves after the List is successfully read (or created).
+This promise may reject if the List could not be created or if this endpoint lacks the necessary permissions to access it.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="List.html">List</a>&gt;</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">syncClient.list(&apos;MyList&apos;)
+  .then(function(list) {
+    console.log(&apos;Successfully opened a List. SID: &apos; + list.sid);
+    list.on(&apos;itemAdded&apos;, function(event) {
+      console.log(&apos;Received itemAdded event: &apos;, event);
+    });
+  })
+  .catch(function(error) {
+    console.log(&apos;Unexpected error&apos;, error);
+  });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="map"><span class="type-signature">&lt;async&gt; </span>map( [arg])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Read or create a Sync Map.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type"><a href="Client.html#OpenOptions">Client#OpenOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">One of:
+<li>Unique name or SID identifying a Sync Map - opens a Map with the given identifier or creates one if it does not exist.</li>
+<li>none - creates a new Map with a randomly assigned SID and no unique name.</li>
+<li><a href="Client.html#OpenOptions">Client#OpenOptions</a> object for more granular control.</li></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    a promise which resolves after the Map is successfully read (or created).
+This promise may reject if the Map could not be created or if this endpoint lacks the necessary permissions to access it.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Map.html">Map</a>&gt;</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">syncClient.map(&apos;MyMap&apos;)
+  .then(function(map) {
+    console.log(&apos;Successfully opened a Map. SID: &apos; + map.sid);
+    map.on(&apos;itemUpdated&apos;, function(event) {
+      console.log(&apos;Received itemUpdated event: &apos;, event);
+    });
+  })
+  .catch(function(error) {
+    console.log(&apos;Unexpected error&apos;, error);
+  });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="stream"><span class="type-signature">&lt;async&gt; </span>stream( [arg])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Read or create a Sync Message Stream.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type"><a href="Client.html#OpenOptions">Client#OpenOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">One of:
+<li>Unique name or SID identifying a Stream - opens a Stream with the given identifier or creates one if it does not exist.</li>
+<li>none - creates a new Stream with a randomly assigned SID and no unique name.</li>
+<li><a href="Client.html#OpenOptions">Client#OpenOptions</a> object for more granular control.</li></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    a promise which resolves after the Stream is successfully read (or created).
+The flow of messages will begin imminently (but not necessarily immediately) upon resolution.
+This promise may reject if the Stream could not be created or if this endpoint lacks the necessary permissions to access it.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Stream.html">Stream</a>&gt;</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">syncClient.stream(&apos;MyStream&apos;)
+  .then(function(stream) {
+    console.log(&apos;Successfully opened a Message Stream. SID: &apos; + stream.sid);
+    stream.on(&apos;messagePublished&apos;, function(event) {
+      console.log(&apos;Received messagePublished event: &apos;, event);
+    });
+  })
+  .catch(function(error) {
+    console.log(&apos;Unexpected error&apos;, error);
+  });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="updateToken"><span class="type-signature"></span>updateToken(token)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Set new authentication token.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">New token to set.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void&gt;</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+<hr>
+<dt class="name" id="ClientOptions">
+    <h4 id="ClientOptions">ClientOptions</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        These options can be passed to Client constructor.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>logLevel</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    &apos;error&apos;
+                
+                </td>
+            
+
+            <td class="description last">The level of logging to enable. Valid options
+  (from strictest to broadest): [&apos;silent&apos;, &apos;error&apos;, &apos;warn&apos;, &apos;info&apos;, &apos;debug&apos;, &apos;trace&apos;].</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="ConnectionState">
+    <h4 id="ConnectionState">ConnectionState</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Indicates current state of connection between the client and Sync service.
+<p>Valid options are as follows:
+</p><li>&apos;connecting&apos; - client is offline and connection attempt is in process.
+</li><li>&apos;connected&apos; - client is online and ready.
+</li><li>&apos;disconnecting&apos; - client is going offline as disconnection is in process.
+</li><li>&apos;disconnected&apos; - client is offline and no connection attempt is in process.
+</li><li>&apos;denied&apos; - client connection is denied because of invalid JWT access token. User must refresh token in order to proceed.
+</li><li>&apos;error&apos; - client connection is in a permanent erroneous state. Client re-initialization is required.
+    </li></div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">&apos;connecting&apos;</span>
+|
+
+<span class="param-type">&apos;connected&apos;</span>
+|
+
+<span class="param-type">&apos;disconnecting&apos;</span>
+|
+
+<span class="param-type">&apos;disconnected&apos;</span>
+|
+
+<span class="param-type">&apos;denied&apos;</span>
+|
+
+<span class="param-type">&apos;error&apos;</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="OpenOptions">
+    <h4 id="OpenOptions">OpenOptions</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Options for opening a Sync Object.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Sync object SID or unique name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">&apos;open_or_create&apos;</span>
+|
+
+<span class="param-type">&apos;open_existing&apos;</span>
+|
+
+<span class="param-type">&apos;create_new&apos;</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    &apos;open_or_create&apos;
+                
+                </td>
+            
+
+            <td class="description last">The mode for opening the Sync object:
+<li>&apos;open_or_create&apos; - reads a Sync object or creates one if it does not exist.
+</li><li>&apos;open_existing&apos; - reads an existing Sync object. The promise is rejected if the object does not exist.
+</li><li>&apos;create_new&apos; - creates a new Sync object. If the <i>id</i> property is specified, it will be used as the unique name.</li></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ttl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The time-to-live of the Sync object in seconds. This is applied only if the object is created.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    { }
+                
+                </td>
+            
+
+            <td class="description last">The initial value for the Sync Document (only applicable to Documents).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">The following example is applicable to all Sync objects
+(i.e., <code>syncClient.document(), syncClient.list(), syncClient.map(), syncClient.stream()</code>)</p>
+    
+    <pre class="sunlight-highlight-javascript">// Attempts to open an existing Document with unique name &apos;MyDocument&apos;
+// If no such Document exists, the promise is rejected
+syncClient.document({
+    id: &apos;MyDocument&apos;,
+    mode: &apos;open_existing&apos;
+  })
+  .then(...)
+  .catch(...);
+
+// Attempts to create a new Document with unique name &apos;MyDocument&apos;, TTL of 24 hours and initial value { name: &apos;John Smith&apos; }
+// If such a Document already exists, the promise is rejected
+syncClient.document({
+    id: &apos;MyDocument&apos;,
+    mode: &apos;create_new&apos;,
+    ttl: 86400
+    value: { name: &apos;John Smith&apos; } // the `value` property is only applicable for Documents
+  })
+  .then(...)
+  .catch(...);</pre>
+
+
+    
+</dd>
+
+            </dl>
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:connectionStateChanged">connectionStateChanged</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Fired when connection state has been changed.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>connectionState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Client.html#ConnectionState">Client#ConnectionState</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Contains current service connection state.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">syncClient.on(&apos;connectionStateChanged&apos;, function(newState) {
+  console.log(&apos;Received new connection state: &apos; + newState);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:tokenAboutToExpire">tokenAboutToExpire</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Fired when the access token is about to expire and needs to be updated.
+The trigger takes place three minutes before the JWT access token expiry.
+For long living applications, you should refresh the token when either <code>tokenAboutToExpire</code> or
+<code>tokenExpired</code> events occur; handling just one of them is sufficient.
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">void</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">The following example illustrates access token refresh</p>
+    
+    <pre class="sunlight-highlight-javascript">syncClient.on(&apos;tokenAboutToExpire&apos;, function() {
+  // Obtain a JWT access token: https://www.twilio.com/docs/sync/identity-and-access-tokens
+  var token = &apos;&lt;your-access-token-here&gt;&apos;;
+  syncClient.updateToken(token);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:tokenExpired">tokenExpired</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Fired when the access token is expired.
+In case the token is not refreshed, all subsequent Sync operations will fail and the client will disconnect.
+For long living applications, you should refresh the token when either <code>tokenAboutToExpire</code> or
+<code>tokenExpired</code> events occur; handling just one of them is sufficient.
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">void</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#xD7;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-07-05T09:03:11+00:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+
+</body></html>
