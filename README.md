@@ -32,7 +32,7 @@ Raspberry Pi.
 
 What Hackpack would be complete without NeoPixels? Your
 Hackpack v4 sports 5 RGB NeoPixels, with a custom-built
-unix socket that lets you control light patterns from 
+unix socket that lets you control light patterns from
 
 
 ####  Onboard Gamepad
@@ -45,3 +45,12 @@ the joystick and control buttons.
 ### Communications Pipeline
 
 tbd
+
+## System Control
+
+### Command-Line Interface
+
+'hackpack kiosk start' - starts the kiosk webview
+'hackpack kiosk stop' - stops the kiosk webview
+
+'hackpack lights led_scanner' - play the led scanner light pattern

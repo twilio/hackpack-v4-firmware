@@ -140,13 +140,13 @@ def _enable_system_api():
     subprocess.call(['node %s/system_api/index.js &' % _firmware_path], shell=True)
 
 def _disable_system_api():
-    subprocess.call(['pkill -f "%s/system_api/index.js"' % _firmware_path], shell=True)
+    subprocess.call(['sudo pkill -f "%s/system_api/index.js"' % _firmware_path], shell=True)
 
 def _enable_kiosk():
     subprocess.call(['python %s/kiosk/kiosk.py &' % _firmware_path], shell=True)
 
 def _disable_kiosk():
-    subprocess.call(['pkill -f "%s/kiosk/kiosk.py"' % _firmware_path], shell=True)
+    subprocess.call(['sudo pkill -f "%s/kiosk/kiosk.py"' % _firmware_path], shell=True)
 
 
 # --------------------------------------------
