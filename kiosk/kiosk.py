@@ -278,7 +278,7 @@ class Api:
             return json.dumps(response)
 
         if u'authToken' in p:
-            f = open(AUTHTOKEN_FILE, "w")
+            f = open(_AUTHTOKEN_FILE, "w")
             f.write(p[u'authToken'])
             f.close()
             response = {
