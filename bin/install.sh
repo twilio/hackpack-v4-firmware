@@ -87,6 +87,16 @@ sudo pip install pywebview[gtk3]
 echo ""
 echo "--------------------------------------------------"
 echo ""
+echo "(6 of 5) Optional games..."
+echo ""
+echo "--------------------------------------------------"
+echo ""
+sudo apt-get install --no-install-recommends -y micropolis
+sudo apt-get install --no-install-recommends -y openttd
+
+echo ""
+echo "--------------------------------------------------"
+echo ""
 echo "Finished installing Hackpack v4. Rebooting..."
 echo ""
 echo "--------------------------------------------------"
