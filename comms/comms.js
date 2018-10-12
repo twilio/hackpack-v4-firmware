@@ -17,7 +17,7 @@ startSyncPipeline();
 
 function startSyncPipeline(){
   request(
-    'https://eggplant-oyster-2859.twil.io/sync-token',
+    'https://jet-hummingbird-7705.twil.io/sync-token',
 
     {
       json: true,

@@ -25,11 +25,14 @@ and comms.
 #### Onboard Screen
 
 Your Hackpack v4 is equipped with a capacitive-touch
-screen
+screen, which duplicates the video output that can also be displayed normally via the HDMI output of the
+Raspberry Pi.
 
 #### Onboard LEDs
 
-tbd
+What Hackpack would be complete without NeoPixels? Your
+Hackpack v4 sports 5 RGB NeoPixels, with a custom-built
+unix socket that lets you control light patterns from 
 
 
 ####  Onboard Gamepad
