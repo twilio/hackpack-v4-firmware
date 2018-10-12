@@ -1,74 +1,60 @@
-import ast
-import fcntl
-import json
-import os
-import struct
-import socket
-import struct
-import subprocess
-import sys
-import threading
-import time
 import webview
+import os
+import time
+import sys
+import random
+import subprocess
+import socket
+import fcntl
+import struct
+import ast
+import json
+from PIL import Image, ImageTk
+import Tkinter as tk
+from stored_patterns import LED_Scanner, White_Swell, Rainbow,\
+    USA, USA_Swell, Gold_Swell
+from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
+from stored_patterns import Pong_Cyan, Pong_Green, Pong_Red, \
+    Pong_Blue, Pong_Violet, Pong_Yellow
 
+AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
+STORAGE_FILE = "/home/pi/hp_tmp/.hp_storage_"
+HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
+# HACKPACK_URL = 'http://10.0.0.31:4000'
 
-_AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
-_STORAGE_FILE = '/home/pi/hp_tmp/.hp_storage_'
-
-_LIGHTSOCKET_PATH = '/dev/lightsocket'
-_LIGHTSOCKET_PACKET_LENGTH = 100
-
-_HW_ID = None
-
-_firmware_path = '/home/pi/firmware'
-_threads = []
-_fileMonitorActive = True
-_current_url = 'https://hackpack-server.herokuapp.com'
-_client = None
-
-_DEBUG = False
-
-
-sys.path.append(_firmware_path + '/drivers/leds/lib_python')
-
-from led_client import LEDClient
+LIGHTSOCKET_PATH = '/dev/lightsocket'
+LIGHTSOCKET_PACKET_LENGTH = 100
+DEBUG = False
+client = None
 
 
 class Api:
-
     def __init__(self):
         self.default_variable = False
 
-        _HW_ID = self._get_hw_id()
+        self.HW_ID = self._get_hw_id()
+        if DEBUG:
+            print(self.HW_ID)
 
-        if _DEBUG:
-            print(_HW_ID)
-
-    def _send_to_lightsocket(self, output):
-        if len(output) < _LIGHTSOCKET_PACKET_LENGTH:
+    def _send_to_lightsocket(self, lightsocket, output):
+        if len(output) < LIGHTSOCKET_PACKET_LENGTH:
             output = '|' + output
-            output = output.rjust(_LIGHTSOCKET_PACKET_LENGTH, '0')
-
+            output = output.rjust(LIGHTSOCKET_PACKET_LENGTH, '0')
         lightsocket.sendall(output)
 
     def _get_hw_id(self):
         # Extract serial from cpuinfo file
-
-        hardware_id = '0000000000000000'
-
+        hw_id = "0000000000000000"
         try:
-            f= open('/proc/cpuinfo', 'r')
-
+            f = open('/proc/cpuinfo','r')
             for line in f:
-                if line[0:6] == 'Serial':
-                    hardware_id = line[10:26]
-
+                if line[0:6]=='Serial':
+                    hw_id = line[10:26]
             f.close()
-
         except:
-            hardware_id = 'ERROR000000000'
+            hw_id = "ERROR000000000"
 
-        return hardware_id
+        return hw_id
 
     def call_light_sequence(self, light_commands):
         try:
@@ -97,7 +83,12 @@ class Api:
 
         return p
 
-    def run_lights(self, demo, repeat_times, noclear=False):
+    def run_lights(
+        self,
+        demo,
+        repeat_times,
+        noclear=False
+    ):
         cmd_dict = []
         if demo > 17 or demo < 0:
             print("Exiting: Invalid demo: " + demo)
@@ -161,9 +152,14 @@ class Api:
         self.call_light_sequence(cmd_dict)
 
 
+    def init(self, params):
+        response = {
+            'message': 'Hello from Python {0}'.format(sys.version)
+        }
+        return json.dumps(response)
 
     def get(self, params):
-        if _DEBUG:
+        if DEBUG:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -193,7 +189,7 @@ class Api:
         return json.dumps(response)
 
     def set(self, params):
-        if _DEBUG:
+        if DEBUG:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -223,51 +219,46 @@ class Api:
         return json.dumps(response)
 
     def autoUpdate(self, params):
+        # Use subprocess.check_output if you expect a response
         process = subprocess.check_output(
-            "sudo /home/pi/firmware/bin/auto_update.sh",
+            "sudo /home/pi/bin/auto_update.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
-
         response = {
             'message': str(process)
         }
-
         return json.dumps(response)
 
     def checkWifiConnection(self, params):
-        process = subprocess.check_putput(
-            "sudo /home/pi/firmware/bin/check_wifi_wget.sh",
+        process = subprocess.check_output(
+            "sudo bash /home/pi/bin/check_wifi_wget.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
-
         response = {
-            'message': str(process)
+            'message': str(process),
         }
-
         return json.dumps(response)
 
     def getAuthToken(self, params):
         # Read AuthToken from file
         try:
-            f = open(_AUTHTOKEN_FILE, 'r')
+            f = open(AUTHTOKEN_FILE, "r")
             value = f.read()
             f.close()
-
             response = {
+                # 'message': str(process).rstrip()
                 'message': value.rstrip()
             }
-
         except:
             response = {
                 'message': ''
             }
-
         return json.dumps(response)
 
     def setAuthToken(self, params):
-        if _DEBUG:
+        if DEBUG:
             print(params)
         # Write AuthToken to file
         p = self.parse_react_json(params)
@@ -278,7 +269,7 @@ class Api:
             return json.dumps(response)
 
         if u'authToken' in p:
-            f = open(_AUTHTOKEN_FILE, "w")
+            f = open(AUTHTOKEN_FILE, "w")
             f.write(p[u'authToken'])
             f.close()
             response = {
@@ -293,6 +284,8 @@ class Api:
 
     # Usage: get_ip_address('eth0') -> 192.160.0.110
     def getIpAddress(self, params):
+        if DEBUG:
+            print(params)
         ifname = 'wlan0'
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
@@ -312,69 +305,67 @@ class Api:
         return json.dumps(response)
 
     def getHardwareId(self, params):
-        if _DEBUG:
+        if DEBUG:
             print(params)
         response = {
-            'message': _HW_ID
+            'message': self.HW_ID
+        }
+        return json.dumps(response)
+
+    def getSignalMap(self, params):
+        root = tk.Tk()
+        img = Image.open(
+            '/home/pi/hackpack-server/static/images/map-signal.png'
+        )
+        tkimage = ImageTk.PhotoImage(img)
+        tk.Label(root, image=tkimage).pack()
+        root.mainloop()
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+    def getRandomNumber(self, params):
+        randNum = random.randint(0, 100000000)
+        message = 'Random IO: {0}'.format(randNum)
+        response = {
+            'message': message
         }
         return json.dumps(response)
 
     def inputArrow(self, params):
-        process = subprocess.call(
-            "sudo bash /home/pi/firmware/bin/system/io/input_arrow.sh",
+        subprocess.Popen(
+            "sudo /home/pi/bin/input_arrow.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
-
         response = {
             'message': 'ok'
         }
-
-        return response
+        return json.dumps(response)
 
     def inputCursor(self, params):
-        process = subprocess.call(
-            "sudo bash /home/pi/firmware/bin/system/io/input_cursor.sh",
+        subprocess.call(
+            "sudo /home/pi/bin/input_cursor.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
-
         response = {
             'message': 'ok'
         }
-
-        return response
-
-
-    def show_lights(self, params):
-        msg = ''
-
-        try:
-            lightbar = LEDClient()
-            lightbar.pattern('led_scanner')
-
-            msg = 'Successfully displayed lights'
-
-        except Error as e:
-            msg = 'Could not activate lights: ' % e.message
-
-        r = {
-            'status': 200,
-            'message': str(msg)
-        }
-
-        return r
+        return json.dumps(response)
 
     def showLights(self, params):
+        # Use subprocess.call if you don't need an output
         subprocess.call(
             "sudo /home/pi/bin/lights_scanner.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
-
         response = {
             'message': 'ok'
         }
+        return json.dumps(response)
 
     def lightsOff(self, params):
         # Use subprocess.call if you don't need an output
@@ -389,141 +380,228 @@ class Api:
         return json.dumps(response)
 
     def showLightsParams(self, params):
-        try:
-            p = st.literal_eval(params)
-        except:
+        if DEBUG:
+            print(params)
+        p = self.parse_react_json(params)
+        if p == '':
             response = {
                 'message': ''
             }
-
             return json.dumps(response)
 
-        parameters = \
-            [
-                "python",
-                "/home/pi/drivers/leds/light_client/lightclient.py"
-            ]
+        demo, repeat = 2, 3
 
-        if p['demo']:
-            parameters.append('-d')
-            parameters.append('-r')
-            parameters.append(str(p['repeat']))
+        if u'demo' in p:
+            try:
+                demo = int(p[u'demo'])
+            except:
+                pass
 
-        subprocess.Popen(parameters)
+        if u'repeat' in p:
+            try:
+                repeat = int(p[u'repeat'])
+            except:
+                pass
+
+        self.run_lights(demo, repeat)
         response = {
             'message': 'ok'
         }
-
         return json.dumps(response)
 
-    def lightsOff(self, params):
-        self._send_to_lightsocket('CLR')
-        self._send_to_lightsocket('0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1')
-        self._send_to_lightsocket('SHW')
-
+    def longTime(self, params):
+        time.sleep(15)
         response = {
             'message': 'ok'
         }
+        return json.dumps(response)
 
+    def launchDoom(self, params):
+        p = subprocess.Popen(
+            [
+                "chocolate-doom",
+                "-iwad",
+                "/home/pi/Signal2018/Doom/DOOM1.WAD",
+                "-config",
+                "/home/pi/hackpack-server/.chocolate-doom-config"
+            ]
+        )
+        p.wait()
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+    def launchMicropolis(self, params):
+        p = subprocess.Popen(["micropolis"])
+        p.wait()
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+    def launchOpenTTD(self, params):
+        p = subprocess.Popen(["openttd"])
+        p.wait()
+        response = {
+            'message': 'ok'
+        }
         return json.dumps(response)
 
     def clearLightSequence(self, params):
-        self._send_to_lightsocket("CLR")
+        cmd_dict = []
+        cmd_dict.append("CLR")
+        self.call_light_sequence(cmd_dict)
         response = {
             'message': 'ok'
         }
         return json.dumps(response)
 
     def lightLights(self, params):
-        self._send_to_lightsocket("SHW")
+        cmd_dict = []
+        cmd_dict.append("SHW")
+        self.call_light_sequence(cmd_dict)
         response = {
             'message': 'ok'
         }
-
         return json.dumps(response)
+
+
+    def changeTouchscreenMode(self, params):
+        if DEBUG:
+            print(params)
+        # params.message will contain the command
+        p = self.parse_react_json(params)
+        if p == '':
+            response = {
+                'message': ''
+            }
+            return json.dumps(response)
+
+        if not u'xy' in p or not u'ud' in p or not u'lr' in p:
+            print("1")
+            response = {
+                'message': ''
+            }
+            return json.dumps(response)
+
+        try:
+            xy, ud, lr = \
+                map(int, list([p[u'xy'], p[u'ud'], p[u'lr']]))
+        except:
+            print("2")
+            response = {
+                'message': ''
+            }
+            return json.dumps(response)
+
+
+        command = "sudo bash -c 'touch /home/pi/.ili9341_touch.conf && echo \"" +\
+                  str(xy) + str(ud) + str(lr) + \
+                  "\" > /home/pi/.ili9341_touch.conf'"
+
+        print(command)
+
+        os.system(command)
+        os.system("sudo pkill -f input_driver.py 2> /dev/null")
+
+    def removeAuthToken(self, params):
+        if DEBUG:
+            print(params)
+
+        try:
+            os.system('sudo rm /home/pi/hp_tmp/.authtoken 2> /dev/null')
+        except:
+            pass
+
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+
+    def removeAllTempStorage(self, params):
+        if DEBUG:
+            print(params)
+
+        try:
+            os.system('find /home/pi/hp_tmp -mindepth 1 -delete')
+        except:
+            pass
+
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
 
     def addLightCommand(self, params):
+        if DEBUG:
+            print(params)
         # params.message will contain the command
-        try:
-            p_dict = ast.literal_eval(params)
-        except:
+        p = self.parse_react_json(params)
+        if p == '':
             response = {
                 'message': ''
             }
             return json.dumps(response)
 
-        print len(p_dict[u'message'].split(','))
+        if DEBUG:
+            print(p)
+            print(type(p))
 
-        if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
-            self._send_to_lightsocket(p_dict[u'message'])
-            response = {
-                'message': 'ok'
-            }
-        else:
-            response = {
+        if u'message' in p:
+            p_dict = p[u'message'].split(',')
+            print len(p_dict)
+            if u'message' in p and len(p_dict) == 16:
+                cmd_dict = []
+                cmd_dict.append(p[u'message'])
+                print cmd_dict
+                self.call_light_sequence(cmd_dict)
+                response = {
+                    'message': 'ok'
+                }
+            else:
+                response = {
+                    'message': ''
+                }
+            return json.dumps(response)
+
+        response = {
                 'message': ''
             }
         return json.dumps(response)
 
+
     def textLights(self, params):
+        if DEBUG:
+            print(params)
         # params.message will contain the entire sms message
-        try:
-            p_dict = ast.literal_eval(params)
-        except:
+        p = self.parse_react_json(params)
+        if p == '':
             response = {
                 'message': ''
             }
             return json.dumps(response)
 
         if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
-            self._send_to_lightsocket("CLR")
-            self._send_to_lightsocket(p_dict[u'message'])
-            self._send_to_lightsocket("SHW")
+            cmd_dict = []
+            cmd_dict.append("CLR")
+            cmd_dict.append(p_dict[u'message'])
+            cmd_dict.append("SHW")
+            self.call_light_sequence(cmd_dict)
             response = {
                 'message': 'ok'
             }
             return json.dumps(response)
 
-    def setTouch(self, params):
-        # Paul: Allow driver change, todo
-        pass
-
-
-
-def file_monitor():
-    global _fileMonitorActive
-    global _current_url
-
-    while _fileMonitorActive:
-        time.sleep(5)
-        print 'Checking file..'
-
-        file_path = '/home/pi/config.txt'
-
-        file_exists = os.path.isfile(file_path)
-
-        # print('Current url: ' + _current_url)
-
-        if file_exists:
-            f = open('/home/pi/config.txt', 'r')
-
-            if f.mode == 'r':
-                requested_url = f.read()
-
-                if requested_url != _current_url:
-                    _current_url = requested_url
-                    webview.load_url(_current_url)
 
 if __name__ == '__main__':
-    t = threading.Thread(target=file_monitor)
-    _threads.append(t)
-    t.start()
-
     api = Api()
-
     webview.create_window(
-        "",
-        url=_current_url,
+        'Hackpack v4',
+        url=HACKPACK_URL,
+        js_api=api,
         width=640,
         height=480,
         resizable=False,
@@ -531,7 +609,5 @@ if __name__ == '__main__':
         min_size=(320, 240),
         background_color='#F00',
         text_select=False,
-        debug=_DEBUG,
-
-        js_api=api
+        debug=True
     )
