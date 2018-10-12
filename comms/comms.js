@@ -11,9 +11,39 @@ var syncClient;
 var syncDoc;
 var syncToken;
 
+var url_api_base = 'https://signal.twilio.com/api';
+var url_api_port = 4000;
+
+var url_api_ping = {
+  ping: '/hackpack/ping'
+}
+
+var req_url = url_api_base + url_api_ping['ping'] + '?id=000000007251C074';
+var totpToken;
+
+re = request
+  .get(req_url)
+  .on('data', function(d){
+    var res = JSON.parse(d.toString());
+
+    if( res.totpToken ){
+      totpToken = res.totpToken;
+
+      // if returns totp, means unclaimed
+
+    } else if( res.authToken ){
+      authToken = res.authToken;
+
+    }
+  });
+
+
+
+
+
 var syncChannelName = 'hackpack-andres-dev';
 
-startSyncPipeline();
+// startSyncPipeline();
 
 function startSyncPipeline(){
   request(
