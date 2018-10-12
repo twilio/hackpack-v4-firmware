@@ -3,6 +3,7 @@ import sys
 import subprocess
 import threading
 import time
+import socket
 
 import webview
 import RPi.GPIO as GPIO
