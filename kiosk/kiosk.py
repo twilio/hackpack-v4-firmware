@@ -526,7 +526,7 @@ if __name__ == '__main__':
         url=_current_url,
         width=640,
         height=480,
-        resizeable=False,
+        resizable=False,
         fullscreen=True,
         min_size=(320, 240),
         background_color='#F00',
