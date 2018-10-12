@@ -1,4 +1,8 @@
+import ast
+import fcntl
+import json
 import os
+import struct
 import sys
 import subprocess
 import threading
