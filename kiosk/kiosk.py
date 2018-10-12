@@ -294,13 +294,15 @@ class Api:
         }
         return json.dumps(response)
 
-     def lightLights(self, params):
+    def lightLights(self, params):
         self._send_to_lightsocket("SHW")
         response = {
             'message': 'ok'
         }
+
         return json.dumps(response)
-     def addLightCommand(self, params):
+
+    def addLightCommand(self, params):
         # params.message will contain the command
         try:
             p_dict = ast.literal_eval(params)
@@ -309,7 +311,9 @@ class Api:
                 'message': ''
             }
             return json.dumps(response)
-         print len(p_dict[u'message'].split(','))
+
+        print len(p_dict[u'message'].split(','))
+
         if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
             self._send_to_lightsocket(p_dict[u'message'])
             response = {
@@ -320,7 +324,8 @@ class Api:
                 'message': ''
             }
         return json.dumps(response)
-     def textLights(self, params):
+
+    def textLights(self, params):
         # params.message will contain the entire sms message
         try:
             p_dict = ast.literal_eval(params)
@@ -329,7 +334,8 @@ class Api:
                 'message': ''
             }
             return json.dumps(response)
-         if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
+
+        if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
             self._send_to_lightsocket("CLR")
             self._send_to_lightsocket(p_dict[u'message'])
             self._send_to_lightsocket("SHW")
@@ -337,7 +343,8 @@ class Api:
                 'message': 'ok'
             }
             return json.dumps(response)
-     def setTouch(self, params):
+
+    def setTouch(self, params):
         # Paul: Allow driver change, todo
         pass
 
