@@ -287,7 +287,7 @@ class Api:
 
         return json.dumps(response)
 
-        def clearLightSequence(self, params):
+    def clearLightSequence(self, params):
         self._send_to_lightsocket("CLR")
         response = {
             'message': 'ok'
