@@ -50,7 +50,7 @@ tbd
 
 ### Command-Line Interface
 
-'hackpack kiosk start' - starts the kiosk webview
-'hackpack kiosk stop' - stops the kiosk webview
+`hackpack kiosk start` - starts the kiosk webview
+`hackpack kiosk stop` - stops the kiosk webview
 
-'hackpack lights led_scanner' - play the led scanner light pattern
+`hackpack lights led_scanner` - play the led scanner light pattern
