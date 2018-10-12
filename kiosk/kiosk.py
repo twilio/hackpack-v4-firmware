@@ -39,10 +39,10 @@ class Api:
     def __init__(self):
         self.default_variable = False
 
-        self._HW_ID = self._get_hw_id()
+        _HW_ID = self._get_hw_id()
 
         if _DEBUG:
-            print(self._HW_ID)
+            print(_HW_ID)
 
     def _send_to_lightsocket(self, output):
         if len(output) < _LIGHTSOCKET_PACKET_LENGTH:
@@ -315,7 +315,7 @@ class Api:
         if _DEBUG:
             print(params)
         response = {
-            'message': self.HW_ID
+            'message': _HW_ID
         }
         return json.dumps(response)
 
