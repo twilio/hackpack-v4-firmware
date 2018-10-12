@@ -163,7 +163,7 @@ class Api:
 
 
     def get(self, params):
-        if DEBUG:
+        if _DEBUG:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -193,7 +193,7 @@ class Api:
         return json.dumps(response)
 
     def set(self, params):
-        if DEBUG:
+        if _DEBUG:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -267,7 +267,7 @@ class Api:
         return json.dumps(response)
 
     def setAuthToken(self, params):
-        if DEBUG:
+        if _DEBUG:
             print(params)
         # Write AuthToken to file
         p = self.parse_react_json(params)
@@ -312,7 +312,7 @@ class Api:
         return json.dumps(response)
 
     def getHardwareId(self, params):
-        if DEBUG:
+        if _DEBUG:
             print(params)
         response = {
             'message': self.HW_ID
