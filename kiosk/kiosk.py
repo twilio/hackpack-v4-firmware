@@ -10,11 +10,11 @@ import struct
 import ast
 import json
 
-from stored_patterns import LED_Scanner, White_Swell, Rainbow,\
-    USA, USA_Swell, Gold_Swell
-from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
-from stored_patterns import Pong_Cyan, Pong_Green, Pong_Red, \
-    Pong_Blue, Pong_Violet, Pong_Yellow
+# from stored_patterns import LED_Scanner, White_Swell, Rainbow,\
+#     USA, USA_Swell, Gold_Swell
+# from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
+# from stored_patterns import Pong_Cyan, Pong_Green, Pong_Red, \
+#     Pong_Blue, Pong_Violet, Pong_Yellow
 
 AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
 STORAGE_FILE = "/home/pi/hp_tmp/.hp_storage_"
@@ -89,66 +89,66 @@ class Api:
         noclear=False
     ):
         cmd_dict = []
-        if demo > 17 or demo < 0:
-            print("Exiting: Invalid demo: " + demo)
-            exit(0)
-        else:
-            # Which pattern to run
-            if demo == 0:
-                # Clear
-                Pattern = [("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15")]
-            elif demo == 1:
-                Pattern = LED_Scanner
-            elif demo == 2:
-                Pattern = White_Swell
-            elif demo == 3:
-                Pattern = Rainbow
-            elif demo == 4:
-                Pattern = USA
-            elif demo == 5:
-                Pattern = USA_Swell
-            elif demo == 6:
-                Pattern = Gold_Swell
-            elif demo == 7:
-                Pattern = Vote_1
-            elif demo == 8:
-                Pattern = Vote_2
-            elif demo == 9:
-                Pattern = Vote_3
-            elif demo == 10:
-                Pattern = Vote_4
-            elif demo == 11:
-                Pattern = Vote_5
-            elif demo == 12:
-                Pattern = Pong_Cyan
-            elif demo == 13:
-                Pattern = Pong_Green
-            elif demo == 14:
-                Pattern = Pong_Red
-            elif demo == 15:
-                Pattern = Pong_Blue
-            elif demo == 16:
-                Pattern = Pong_Violet
-            elif demo == 17:
-                Pattern = Pong_Yellow
-
-        cmd_dict.append("CLR")
-
-        for x in range(0, repeat_times):
-            for y in range(0, len(Pattern)):
-                cmd_dict.append(Pattern[y])
-
-        # Cleanup
-        if not noclear:
-            cmd_dict.append("000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000")
-
-        # Read back - comment out to skip. Printed out by the server.
-        # _send_to_lightsocket("PRT")
-
-        # Show lights
-        cmd_dict.append("SHW")
-
-        self.call_light_sequence(cmd_dict)
+        # if demo > 17 or demo < 0:
+        #     print("Exiting: Invalid demo: " + demo)
+        #     exit(0)
+        # else:
+        #     # Which pattern to run
+        #     if demo == 0:
+        #         # Clear
+        #         Pattern = [("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15")]
+        #     elif demo == 1:
+        #         Pattern = LED_Scanner
+        #     elif demo == 2:
+        #         Pattern = White_Swell
+        #     elif demo == 3:
+        #         Pattern = Rainbow
+        #     elif demo == 4:
+        #         Pattern = USA
+        #     elif demo == 5:
+        #         Pattern = USA_Swell
+        #     elif demo == 6:
+        #         Pattern = Gold_Swell
+        #     elif demo == 7:
+        #         Pattern = Vote_1
+        #     elif demo == 8:
+        #         Pattern = Vote_2
+        #     elif demo == 9:
+        #         Pattern = Vote_3
+        #     elif demo == 10:
+        #         Pattern = Vote_4
+        #     elif demo == 11:
+        #         Pattern = Vote_5
+        #     elif demo == 12:
+        #         Pattern = Pong_Cyan
+        #     elif demo == 13:
+        #         Pattern = Pong_Green
+        #     elif demo == 14:
+        #         Pattern = Pong_Red
+        #     elif demo == 15:
+        #         Pattern = Pong_Blue
+        #     elif demo == 16:
+        #         Pattern = Pong_Violet
+        #     elif demo == 17:
+        #         Pattern = Pong_Yellow
+        #
+        # cmd_dict.append("CLR")
+        #
+        # for x in range(0, repeat_times):
+        #     for y in range(0, len(Pattern)):
+        #         cmd_dict.append(Pattern[y])
+        #
+        # # Cleanup
+        # if not noclear:
+        #     cmd_dict.append("000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000")
+        #
+        # # Read back - comment out to skip. Printed out by the server.
+        # # _send_to_lightsocket("PRT")
+        #
+        # # Show lights
+        # cmd_dict.append("SHW")
+        #
+        # self.call_light_sequence(cmd_dict)
 
 
     def init(self, params):
