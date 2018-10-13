@@ -12,47 +12,15 @@ import time
 import webview
 
 
-_AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
-_STORAGE_FILE = '/home/pi/hp_tmp/.hp_storage_'
-
-_LIGHTSOCKET_PATH = '/dev/lightsocket'
-_LIGHTSOCKET_PACKET_LENGTH = 100
-
-_HW_ID = None
-
-_firmware_path = '/home/pi/firmware'
-_threads = []
-_fileMonitorActive = True
-_current_url = 'https://hackpack-server.herokuapp.com'
-_client = None
-
-<<<<<<< Updated upstream
-_DEBUG = False
-
-
-sys.path.append(_firmware_path + '/drivers/leds/lib_python')
-
-from led_client import LEDClient
-
-
-class Api:
-
-    def __init__(self):
-        self.default_variable = False
-
-        _HW_ID = self._get_hw_id()
-
-        if _DEBUG:
-            print(_HW_ID)
-
-    def _send_to_lightsocket(self, output):
-        if len(output) < _LIGHTSOCKET_PACKET_LENGTH:
-            output = '|' + output
-            output = output.rjust(_LIGHTSOCKET_PACKET_LENGTH, '0')
-
-=======
 HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
 DEBUG = False
+
+# Import LED python library
+
+FIRMWARE_PATH = '/home/pi/firmware'
+sys.path.append(FIRMWARE_PATH + '/drivers/leds/lib_python')
+from led_client import LEDClient
+
 
 
 class BrowserApi:
@@ -61,20 +29,23 @@ class BrowserApi:
     _LIGHTSOCKET_PATH = '/dev/lightsocket'
     _LIGHTSOCKET_PACKET_LENGTH = 100
     _client = None
+    _HW_ID = None
+    _is_debug = False
 
 
-    def __init__(self):
+    def __init__(self, debug=False):
         self.default_variable = False
-        self.HW_ID = self._get_hw_id()
+        self._HW_ID = self._get_hw_id()
 
-        if DEBUG:
-            print(self.HW_ID)
+        if self._is_debug:
+            self._is_debug
+            print(self._HW_ID)
 
     def _send_to_lightsocket(self, lightsocket, output):
         if len(output) < self._LIGHTSOCKET_PACKET_LENGTH:
             output = '|' + output
             output = output.rjust(self._LIGHTSOCKET_PACKET_LENGTH, '0')
->>>>>>> Stashed changes
+
         lightsocket.sendall(output)
 
     def _get_hw_id(self):
@@ -123,7 +94,7 @@ class BrowserApi:
         except:
             try:
                 p = ast.literal_eval(json.dumps(react_json))
-                
+
             except:
                 return ''
 
@@ -195,7 +166,7 @@ class BrowserApi:
 
 
     def get(self, params):
-        if _DEBUG:
+        if self._is_debug:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -225,7 +196,7 @@ class BrowserApi:
         return json.dumps(response)
 
     def set(self, params):
-        if _DEBUG:
+        if self._is_debug:
             print(params)
         p = self.parse_react_json(params)
         if p == '':
@@ -283,11 +254,8 @@ class BrowserApi:
     def getAuthToken(self, params):
         # Read AuthToken from file
         try:
-<<<<<<< Updated upstream
-            f = open(_AUTHTOKEN_FILE, 'r')
-=======
             f = open(self._AUTHTOKEN_FILE, "r")
->>>>>>> Stashed changes
+
             value = f.read()
             f.close()
 
@@ -303,7 +271,7 @@ class BrowserApi:
         return json.dumps(response)
 
     def setAuthToken(self, params):
-        if _DEBUG:
+        if self._is_debug:
             print(params)
         # Write AuthToken to file
         p = self.parse_react_json(params)
@@ -314,11 +282,8 @@ class BrowserApi:
             return json.dumps(response)
 
         if u'authToken' in p:
-<<<<<<< Updated upstream
-            f = open(_AUTHTOKEN_FILE, "w")
-=======
             f = open(self._AUTHTOKEN_FILE, "w")
->>>>>>> Stashed changes
+
             f.write(p[u'authToken'])
             f.close()
             response = {
@@ -352,10 +317,10 @@ class BrowserApi:
         return json.dumps(response)
 
     def getHardwareId(self, params):
-        if _DEBUG:
+        if self._is_debug:
             print(params)
         response = {
-            'message': _HW_ID
+            'message': self._HW_ID
         }
         return json.dumps(response)
 
@@ -555,28 +520,16 @@ def file_monitor():
                     webview.load_url(_current_url)
 
 if __name__ == '__main__':
-<<<<<<< Updated upstream
-    t = threading.Thread(target=file_monitor)
-    _threads.append(t)
-    t.start()
-
-    api = Api()
-
-    webview.create_window(
-        "",
-        url=_current_url,
-=======
-    a = BrowserApi()
+    a = BrowserApi(DEBUG)
 
     webview.create_window(
         'Hackpack v4',
         url=HACKPACK_URL,
         js_api=a,
-        debug=True
+        debug=DEBUG,
 
         # Window style & use
 
->>>>>>> Stashed changes
         width=640,
         height=480,
         resizable=False,
@@ -584,10 +537,4 @@ if __name__ == '__main__':
         min_size=(320, 240),
         background_color='#F00',
         text_select=False,
-<<<<<<< Updated upstream
-        debug=_DEBUG,
-
-        js_api=api
-=======
->>>>>>> Stashed changes
     )
