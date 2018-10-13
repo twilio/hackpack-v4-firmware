@@ -220,7 +220,7 @@ class Api:
     def autoUpdate(self, params):
         # Use subprocess.check_output if you expect a response
         process = subprocess.check_output(
-            "sudo /home/pi/bin/auto_update.sh",
+            "sudo bash /home/pi/firmware/bin/auto_update.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -231,7 +231,7 @@ class Api:
 
     def checkWifiConnection(self, params):
         process = subprocess.check_output(
-            "sudo bash /home/pi/bin/check_wifi_wget.sh",
+            "sudo bash /home/pi/firmware/bin/system/check_wifi_wget.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -344,7 +344,7 @@ class Api:
     def showLights(self, params):
         # Use subprocess.call if you don't need an output
         subprocess.call(
-            "sudo /home/pi/bin/lights_scanner.sh",
+            "sudo bash /home/pi/bin/lights_scanner.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
