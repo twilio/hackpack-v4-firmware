@@ -87,12 +87,20 @@ sudo pip install pywebview[gtk3]
 echo ""
 echo "--------------------------------------------------"
 echo ""
-echo "(6 of 5) Optional games..."
+echo "(6 of 5) Optional games and input..."
 echo ""
 echo "--------------------------------------------------"
 echo ""
 sudo apt-get install --no-install-recommends -y micropolis
 sudo apt-get install --no-install-recommends -y openttd
+sudo cp -r /home/pi/firmware/assets/chocolate-doom/chocolate-* /usr/local/bin/
+sudo cp -r /home/pi/firmware/assets/matchbox-keyboard/matchbox-keyboard /usr/local/bin/
+mkdir /home/pi/doom
+cp /home/pi/firmware/assets/chocolate-doom/DOOM1.WAD /home/pi/doom
+cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-config /home/pi/doom
+cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-extra-config /home/pi/doom
+sudo apt-get install -y libsdl1.2debian libsdl-image1.2 libsdl-mixer1.2 timidity
+sudo apt-get install -y libsdl-mixer1.2-dev libsdl-net1.2 libsdl-net1.2-dev 
 
 echo ""
 echo "--------------------------------------------------"

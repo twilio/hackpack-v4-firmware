@@ -18,7 +18,20 @@ echo ""
 echo "Installing wifi networks..."
 echo ""
 
-# sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /boot/wpa_supplicant.conf
+# sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+echo "" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "network={" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    ssid=\"SIGNAL18\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    psk=\"Join us at signal\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    id_str=\"signal_guest\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "}" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "network={" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    ssid=\"TwilioGuest\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    psk=\"join us at twilio\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "    id_str=\"twilio_guest\"" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "}" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
+echo "" | sudo tee --append /etc/wpa_supplicant/wpa_supplicant.conf
 
 # Configure boot-time background image
 
