@@ -45,6 +45,13 @@ echo ""
 sudo cp /home/pi/firmware/bin/root/home/pi/.config/lxsession/LXDE-pi/autostart /home/pi/.config/lxsession/LXDE-pi/autostart
 sudo chmod 775 /home/pi/firmware/bin/boot.sh
 
+
+echo ""
+echo "Setting up Doom..."
+echo ""
+
+# Soon
+
 echo ""
 echo "Finished installing driver support"
 echo ""

@@ -79,7 +79,8 @@ LEFTRIGHT_INVERTED = False
 
 # To verify
 try:
-    TOUCH_CONF = commands.getstatusoutput("cat /etc/ili9341_touch.conf")
+    TOUCH_CONF = commands.getstatusoutput("cat /home/pi/.ili9341_touch.conf")
+    print(TOUCH_CONF)
     XY_REVERSED, UPDOWN_INVERTED, LEFTRIGHT_INVERTED = \
         map(lambda x: bool(int(x)), list(TOUCH_CONF[1]))
     print(XY_REVERSED, UPDOWN_INVERTED, LEFTRIGHT_INVERTED)
@@ -731,7 +732,8 @@ def main():
             ts = ch7.read()
             if (ts < 100):
 
-                print("TS is " + str(ts))
+                if DEBUG:
+                    print("TS is " + str(ts))
                 X_ABS = read_touch_screen(X_ADDR)
                 Y_ABS = read_touch_screen(Y_ADDR)
 
