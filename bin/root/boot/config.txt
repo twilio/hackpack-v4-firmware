@@ -30,3 +30,6 @@ sdtv_aspect=1
 # Hijack PWM
 
 dtparam=audio=on
+
+# Enable i2c
+dtparam=i2c_arm=on
