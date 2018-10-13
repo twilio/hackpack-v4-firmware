@@ -26,6 +26,7 @@ _fileMonitorActive = True
 _current_url = 'https://hackpack-server.herokuapp.com'
 _client = None
 
+<<<<<<< Updated upstream
 _DEBUG = False
 
 
@@ -49,6 +50,31 @@ class Api:
             output = '|' + output
             output = output.rjust(_LIGHTSOCKET_PACKET_LENGTH, '0')
 
+=======
+HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
+DEBUG = False
+
+
+class BrowserApi:
+    _AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
+    _STORAGE_FILE = "/home/pi/hp_tmp/.hp_storage_"
+    _LIGHTSOCKET_PATH = '/dev/lightsocket'
+    _LIGHTSOCKET_PACKET_LENGTH = 100
+    _client = None
+
+
+    def __init__(self):
+        self.default_variable = False
+        self.HW_ID = self._get_hw_id()
+
+        if DEBUG:
+            print(self.HW_ID)
+
+    def _send_to_lightsocket(self, lightsocket, output):
+        if len(output) < self._LIGHTSOCKET_PACKET_LENGTH:
+            output = '|' + output
+            output = output.rjust(self._LIGHTSOCKET_PACKET_LENGTH, '0')
+>>>>>>> Stashed changes
         lightsocket.sendall(output)
 
     def _get_hw_id(self):
@@ -72,16 +98,20 @@ class Api:
 
     def call_light_sequence(self, light_commands):
         try:
-            if os.path.exists( LIGHTSOCKET_PATH ):
-                client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-                client.connect( LIGHTSOCKET_PATH )
+            if os.path.exists( self._LIGHTSOCKET_PATH ):
+                self._client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+                self._client.connect( self._LIGHTSOCKET_PATH )
+
             else:
                 print("Exiting: Can't find socket.")
                 return
+
             for command in light_commands:
-                self._send_to_lightsocket(client, command)
-            client.shutdown(socket.SHUT_WR)
-            client.close()
+                self._send_to_lightsocket(self._client, command)
+
+            self._client.shutdown(socket.SHUT_WR)
+            self._client.close()
+
         except:
             print("Exiting: Failed socket.")
             return
@@ -89,9 +119,11 @@ class Api:
     def parse_react_json(self, react_json):
         try:
             p = ast.literal_eval(react_json)
+
         except:
             try:
                 p = ast.literal_eval(json.dumps(react_json))
+                
             except:
                 return ''
 
@@ -176,7 +208,7 @@ class Api:
             key = p[u'key']
             # Read AuthToken from file
             try:
-                f = open(STORAGE_FILE + str(key), "r")
+                f = open(self._STORAGE_FILE + str(key), "r")
                 value = f.read()
                 f.close()
                 response = {
@@ -206,7 +238,7 @@ class Api:
             key = p[u'key']
             # Write AuthToken to file
             try:
-                f = open(STORAGE_FILE + str(key), "w")
+                f = open(self._STORAGE_FILE + str(key), "w")
                 f.write(str(p[u'data']))
                 f.close()
                 response = {
@@ -251,7 +283,11 @@ class Api:
     def getAuthToken(self, params):
         # Read AuthToken from file
         try:
+<<<<<<< Updated upstream
             f = open(_AUTHTOKEN_FILE, 'r')
+=======
+            f = open(self._AUTHTOKEN_FILE, "r")
+>>>>>>> Stashed changes
             value = f.read()
             f.close()
 
@@ -278,7 +314,11 @@ class Api:
             return json.dumps(response)
 
         if u'authToken' in p:
+<<<<<<< Updated upstream
             f = open(_AUTHTOKEN_FILE, "w")
+=======
+            f = open(self._AUTHTOKEN_FILE, "w")
+>>>>>>> Stashed changes
             f.write(p[u'authToken'])
             f.close()
             response = {
@@ -515,6 +555,7 @@ def file_monitor():
                     webview.load_url(_current_url)
 
 if __name__ == '__main__':
+<<<<<<< Updated upstream
     t = threading.Thread(target=file_monitor)
     _threads.append(t)
     t.start()
@@ -524,6 +565,18 @@ if __name__ == '__main__':
     webview.create_window(
         "",
         url=_current_url,
+=======
+    a = BrowserApi()
+
+    webview.create_window(
+        'Hackpack v4',
+        url=HACKPACK_URL,
+        js_api=a,
+        debug=True
+
+        # Window style & use
+
+>>>>>>> Stashed changes
         width=640,
         height=480,
         resizable=False,
@@ -531,7 +584,10 @@ if __name__ == '__main__':
         min_size=(320, 240),
         background_color='#F00',
         text_select=False,
+<<<<<<< Updated upstream
         debug=_DEBUG,
 
         js_api=api
+=======
+>>>>>>> Stashed changes
     )
