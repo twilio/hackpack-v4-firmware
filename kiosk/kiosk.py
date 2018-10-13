@@ -407,9 +407,11 @@ class Api:
             [
                 "chocolate-doom",
                 "-iwad",
-                "/home/pi/Signal2018/Doom/DOOM1.WAD",
+                "/home/pi/doom/DOOM1.WAD",
                 "-config",
-                "/home/pi/hackpack-server/.chocolate-doom-config"
+                "/home/pi/doom/.chocolate-doom-config",
+                "extraconfig",
+                "/home/pi/doom/.chocolate-doom-extra-config"
             ]
         )
         p.wait()
