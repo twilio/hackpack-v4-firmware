@@ -12,11 +12,11 @@ echo ""
 
 sudo mkdir /home/pi/hp_tmp
 
-sudo touch /home/pi/hp_tmp/.hp_storage_
-sudo chown -R pi:pi /home/pi/hp_tmp/.hp_storage_
+#sudo touch /home/pi/hp_tmp/.hp_storage_
+#sudo chown -R pi:pi /home/pi/hp_tmp/.hp_storage_
 
-sudo touch /home/pi/hp_tmp/.authtoken
-sudo chown -R pi:pi /home/pi/hp_tmp/.authtoken
+#sudo touch /home/pi/hp_tmp/.authtoken
+#sudo chown -R pi:pi /home/pi/hp_tmp/.authtoken
 
 sudo apt-get update
 sudo apt-get install --no-install-recommends -y git
