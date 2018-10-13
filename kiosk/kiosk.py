@@ -321,7 +321,7 @@ class Api:
 
     def inputArrow(self, params):
         subprocess.Popen(
-            "sudo /home/pi/bin/input_arrow.sh",
+            "sudo /home/pi/firmware/bin/system/io/input_arrow.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -332,7 +332,7 @@ class Api:
 
     def inputCursor(self, params):
         subprocess.call(
-            "sudo /home/pi/bin/input_cursor.sh",
+            "sudo /home/pi/firmware/bin/system/io/input_cursor.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
