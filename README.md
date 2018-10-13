@@ -5,6 +5,14 @@ onboard screen, LEDs, and gamepad.
 
 ## Installation
 
+### Boot up a Raspberry Pi with Raspbian
+
+To get started, you'll need to set up a standard Raspberry Pi with the current Raspian image. Hackpack v4 requires Raspbian rather than Raspian Lite, due to depending on the Raspbian desktop window manager for its 8-bit glory.
+
+You can get the image files at the Raspberry Pi foundation's website:
+
+https://www.raspberrypi.org/downloads/raspbian/
+
 ### Get the codebase
 
 To get started, clone this repo into `/home/pi/firmware`. The codebase depends on
