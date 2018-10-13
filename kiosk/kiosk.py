@@ -9,8 +9,7 @@ import fcntl
 import struct
 import ast
 import json
-from PIL import Image, ImageTk
-import Tkinter as tk
+
 from stored_patterns import LED_Scanner, White_Swell, Rainbow,\
     USA, USA_Swell, Gold_Swell
 from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
@@ -309,19 +308,6 @@ class Api:
             print(params)
         response = {
             'message': self.HW_ID
-        }
-        return json.dumps(response)
-
-    def getSignalMap(self, params):
-        root = tk.Tk()
-        img = Image.open(
-            '/home/pi/hackpack-server/static/images/map-signal.png'
-        )
-        tkimage = ImageTk.PhotoImage(img)
-        tk.Label(root, image=tkimage).pack()
-        root.mainloop()
-        response = {
-            'message': 'ok'
         }
         return json.dumps(response)
 
