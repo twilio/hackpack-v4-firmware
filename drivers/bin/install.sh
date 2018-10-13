@@ -18,7 +18,20 @@ echo ""
 echo "Installing wifi networks..."
 echo ""
 
-# sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /boot/wpa_supplicant.conf
+# sudo cp /home/pi/firmware/bin/root/boot/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    ssid=\"SIGNAL18\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    psk=\"Join us at signal\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    id_str=\"signal_guest\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    ssid=\"TwilioGuest\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    psk=\"join us at twilio\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "    id_str=\"twilio_guest\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 # Configure boot-time background image
 
