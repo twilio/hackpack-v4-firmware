@@ -1,12 +1,16 @@
 import kiosk
 import time
 
-a = kiosk.Api()
+a = kiosk.BrowserApi(True)
+
+print("Dim")
+a._dim_light_cmd("128,128,128,128,128,128,128,128,128,128,128,128,128,128,128,30",50)
+print("No dim")
+a._dim_light_cmd("128,128,128,128,128,128,128,128,128,128,128,128,128,128,128,30")
 
 print("Touch")
 print(a.changeTouchscreenMode("{}"))
 print(a.changeTouchscreenMode("{u'xy': 1, u'lr': 0, u'ud': 0}"))
-
 
 print("Check WiFi")
 print(a.checkWifiConnection("{}"))
@@ -44,7 +48,18 @@ print(a.inputArrow("{}"))
 print("Cursor")
 print(a.inputCursor("{}"))
 
-print("Scanner")
+print("Off lights and scanner")
+print(a.setLightIntensity("{u'intensity': u'0'}"))
+print(a.showLights("{}"))
+time.sleep(5)
+
+print("Dim lights and scanner")
+print(a.setLightIntensity("{u'intensity': u'50'}"))
+print(a.showLights("{}"))
+time.sleep(5)
+
+print("Full lights and scanner")
+print(a.setLightIntensity("{u'intensity': u'100'}"))
 print(a.showLights("{}"))
 time.sleep(5)
 

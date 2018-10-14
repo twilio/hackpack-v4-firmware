@@ -28,7 +28,7 @@ sudo modprobe -i uinput
 sleep 1s
 
 # Input drivers
-sudo python /home/pi/drivers/input/input_driver.py &
+sudo bash /home/pi/firmware/bin/system/io/input_driver.sh &
 
 
 # Display drivers
@@ -47,8 +47,6 @@ sleep 1s
 sudo echo "0" > /sys/class/gpio/gpio5/value
 sleep 1s
 
-
-
 # Framebuffer
 sudo /home/pi/drivers/video/fbcp-ili9341 &
 
@@ -59,7 +57,7 @@ sudo /home/pi/drivers/leds/open_lightsocket &
 
 # Display startup lights
 sleep .1s
-python /home/pi/drivers/leds/light_client/lightclient.py
+python /home/pi/firmware/drivers/leds/lib_python/led_client.py -d 1 -r 10
 
 # NOT WORKING - (doesn't work for gpio display) vvv
 # xset -dpms # disable DPMS (Energy Star) features.
