@@ -1,7 +1,7 @@
 import kiosk
 import time
 
-a = kiosk.BrowserApi()
+a = kiosk.BrowserApi(True)
 
 print("Touch")
 print(a.changeTouchscreenMode("{}"))

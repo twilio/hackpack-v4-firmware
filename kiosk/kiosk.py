@@ -14,6 +14,7 @@ import time
 import webview
 import collections
 import random
+from pynput import keyboard
 
 # Import LED python library
 FIRMWARE_PATH = '/home/pi/firmware'
@@ -54,9 +55,9 @@ class BrowserApi:
     _HW_ID = None
     _is_debug = False
 
-    def __init__(self):
+    def __init__(self, debug):
         self.default_variable = False
-
+        self._is_debug = debug
         self._HW_ID = self._get_hw_id()
         if self._is_debug:
             print(self._HW_ID)
@@ -474,7 +475,7 @@ class BrowserApi:
 
         if u'url' in p:
             CURRENT_URL = p[u'url']
-            self.run_lights(18, 3)
+            self.run_lights(18, 5)
             webview.load_url(CURRENT_URL)
 
             response = {
@@ -724,8 +725,8 @@ def on_release(key):
                 print("RESETTING!")
             os.system(
                 'python '
-                '/home/pi/firmware/drivers/leds/lib_python/led_client.py '
-                '-d 24 -r 3'
+                '/home/pi/firmware/drivers/leds/light_client/lightclient.py '
+                '-d 24 -r 5'
             )
             CURRENT_URL = HACKPACK_URL
             webview.load_url(HACKPACK_URL)
@@ -753,14 +754,12 @@ def change_url(api):
 
 if __name__ == '__main__':
     a = BrowserApi(_is_debug)
-
-    api = Api()
     t = threading.Thread(target=listen_keys)
     t.daemon = True
     t.start()
 
     if _is_debug:
-        t2 = threading.Thread(target=change_url, args=(api, ))
+        t2 = threading.Thread(target=change_url, args=(a , ))
         t2.daemon = True
         t2.start()
 
