@@ -9,3 +9,5 @@ cd /home/pi/firmware
 git pull
 
 echo "> Update Complete"
+
+sudo shutdown -r now

@@ -386,19 +386,6 @@ class BrowserApi:
         }
         return json.dumps(response)
 
-    def getSignalMap(self, params):
-        root = tk.Tk()
-        img = Image.open(
-            '/home/pi/hackpack-server/static/images/map-signal.png'
-        )
-        tkimage = ImageTk.PhotoImage(img)
-        tk.Label(root, image=tkimage).pack()
-        root.mainloop()
-        response = {
-            'message': 'ok'
-        }
-        return json.dumps(response)
-
     def getRandomNumber(self, params):
         randNum = random.randint(0, 100000000)
         message = 'Random IO: {0}'.format(randNum)
