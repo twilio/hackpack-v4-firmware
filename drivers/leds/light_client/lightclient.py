@@ -8,6 +8,8 @@ from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
 from stored_patterns import Pong_Cyan, Pong_Green, Pong_Red, Pong_Blue, Pong_Violet, Pong_Yellow
 from stored_patterns import Cyan_Wave, Green_Wave, Red_Wave, Blue_Wave, Violet_Wave, Yellow_Wave
 from stored_patterns import Inv_Cyan_Wave, Inv_Green_Wave, Inv_Red_Wave, Inv_Blue_Wave, Inv_Violet_Wave, Inv_Yellow_Wave
+from stored_patterns import OK_GO_PINK, OK_GO_BLUE, OK_GO_GREEN, OK_GO_YELLOW
+from stored_patterns import OK_GO_PURPLE, OK_GO_RED, OK_GO_ORANGE, OK_GO_WHITE
 
 packet_length = 100
 client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -34,7 +36,7 @@ if __name__ == "__main__":
     parser.add_option("-p", "--path", dest="path", default="/dev/lightsocket",
         help="Path to light socket", metavar="PATH")
     parser.add_option("-d", "--demo", dest="demo", default=1, type="int",
-        help="Built-in demo [0-29]", metavar="DEMO")
+        help="Built-in demo [0-37]", metavar="DEMO")
     parser.add_option("-i", "--intensity", dest="intensity", default=100, type="int",
         help="Light Brightness [0-100]", metavar="INTENSITY")
     parser.add_option("-n", "--noclear", action="store_true", dest="noclear", default=False,
@@ -44,7 +46,7 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
 
     demo = options.demo
-    if int(demo) > 29 or int(demo) < 0:
+    if int(demo) > 37 or int(demo) < 0:
         print("Exiting: Invalid demo: " + str(demo))
         exit(0)
     else:
@@ -110,6 +112,23 @@ if __name__ == "__main__":
             Pattern = Inv_Violet_Wave
         elif demo == 29:
             Pattern = Inv_Yellow_Wave
+        elif demo == 30:
+            Pattern = OK_GO_PINK
+        elif demo == 31:
+            Pattern = OK_GO_BLUE
+        elif demo == 32:
+            Pattern = OK_GO_GREEN
+        elif demo == 33:
+            Pattern = OK_GO_YELLOW
+        elif demo == 34:
+            Pattern = OK_GO_PURPLE
+        elif demo == 35:
+            Pattern = OK_GO_RED
+        elif demo == 36:
+            Pattern = OK_GO_ORANGE
+        elif demo == 37:
+            Pattern = OK_GO_WHITE
+
 
     intensity = options.intensity
     if intensity < 0:

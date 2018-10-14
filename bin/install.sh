@@ -105,7 +105,7 @@ sudo chown -R pi:pi /home/pi/
 chmod -R 755 /home/pi/firmware/bin/
 
 # Set wallpaper & aesthetics
-sudo pcmanfm --set-wallpaper /home/pi/firmware/assets/images/wallpaper.png
+pcmanfm --set-wallpaper /home/pi/firmware/assets/images/wallpaper.png
 sudo cp -r /home/pi/firmware/assets/config /home/pi/.config
 
 # Cleanup
