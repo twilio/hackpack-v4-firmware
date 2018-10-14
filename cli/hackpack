@@ -118,29 +118,11 @@ def disable_lightserver():
 
 @app.command()
 @click.argument('cmd')
-def api(cmd):
-    """
-    Controls the system API
-    """
-
-    if cmd == 'start':
-        _enable_system_api()
-    elif cmd == 'stop':
-        _disable_system_api()
-
-@app.command()
-@click.argument('cmd')
 def kiosk(cmd):
     if cmd == 'start':
         _enable_kiosk()
     elif cmd == 'stop':
         _disable_kiosk()
-
-def _enable_system_api():
-    subprocess.call(['node %s/system_api/index.js &' % _firmware_path], shell=True)
-
-def _disable_system_api():
-    subprocess.call(['sudo pkill -f "%s/system_api/index.js"' % _firmware_path], shell=True)
 
 def _enable_kiosk():
     subprocess.call(['python %s/kiosk/kiosk.py &' % _firmware_path], shell=True)

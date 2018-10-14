@@ -51,24 +51,12 @@ echo ""
 
 sudo bash /home/pi/firmware/cli/bin/install.sh
 
-# Run System API install script
-
-echo ""
-echo "--------------------------------------------------"
-echo ""
-echo "(4 of 5) Installing SYSTEM API..."
-echo ""
-echo "--------------------------------------------------"
-echo ""
-
-sudo bash /home/pi/firmware/system_api/bin/install.sh
-
 # Run Kiosk install
 
 echo ""
 echo "--------------------------------------------------"
 echo ""
-echo "(5 of 5) Installing Kiosk functionality..."
+echo "(4 of 5) Installing Kiosk functionality..."
 echo ""
 echo "--------------------------------------------------"
 echo ""
@@ -88,7 +76,7 @@ sudo bash /home/pi/firmware/kiosk/bin/install.sh
 echo ""
 echo "--------------------------------------------------"
 echo ""
-echo "(6 of 5) Optional games and input..."
+echo "(5 of 5) Optional games and input..."
 echo ""
 echo "--------------------------------------------------"
 echo ""
@@ -101,12 +89,12 @@ cp /home/pi/firmware/assets/chocolate-doom/DOOM1.WAD /home/pi/doom
 cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-config /home/pi/doom
 cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-extra-config /home/pi/doom
 sudo apt-get install -y libsdl1.2debian libsdl-image1.2 libsdl-mixer1.2 timidity
-sudo apt-get install -y libsdl-mixer1.2-dev libsdl-net1.2 libsdl-net1.2-dev 
+sudo apt-get install -y libsdl-mixer1.2-dev libsdl-net1.2 libsdl-net1.2-dev
 
 echo ""
 echo "--------------------------------------------------"
 echo ""
-echo "(7 of 5) Final steps and aesthetics"
+echo "(6 of 5) Final steps and aesthetics"
 echo ""
 echo "--------------------------------------------------"
 echo ""

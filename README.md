@@ -33,8 +33,7 @@ Once cloned locally, run:
 `sudo bash /home/pi/firmware/bin/install.sh`
 
 This master install script, in turn, runs the install
-scripts for each system component - drivers, kiosk,
-and comms.
+scripts for each system component - drivers, and kiosk.
 
 ## Functionality
 
