@@ -30,6 +30,8 @@ from stored_patterns import Cyan_Wave, Green_Wave, Red_Wave
 from stored_patterns import Blue_Wave, Violet_Wave, Yellow_Wave
 from stored_patterns import Inv_Cyan_Wave, Inv_Green_Wave, Inv_Red_Wave
 from stored_patterns import Inv_Blue_Wave, Inv_Violet_Wave, Inv_Yellow_Wave
+from stored_patterns import OK_GO_PINK, OK_GO_BLUE, OK_GO_GREEN, OK_GO_YELLOW
+from stored_patterns import OK_GO_PURPLE, OK_GO_RED, OK_GO_ORANGE, OK_GO_WHITE
 
 HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
 CURRENT_URL = HACKPACK_URL
@@ -134,9 +136,9 @@ class BrowserApi:
         noclear=False
     ):
         cmd_dict = []
-        if int(demo) > 29 or int(demo) < 0:
+        if int(demo) > 37 or int(demo) < 0:
             print("Exiting: Invalid demo: " + str(demo))
-            exit(0)
+            return
         else:
             # Which pattern to run
             if demo == 0:
@@ -200,6 +202,22 @@ class BrowserApi:
                 Pattern = Inv_Violet_Wave
             elif demo == 29:
                 Pattern = Inv_Yellow_Wave
+            elif demo == 30:
+                Pattern = OK_GO_PINK
+            elif demo == 31:
+                Pattern = OK_GO_BLUE
+            elif demo == 32:
+                Pattern = OK_GO_GREEN
+            elif demo == 33:
+                Pattern = OK_GO_YELLOW
+            elif demo == 34:
+                Pattern = OK_GO_PURPLE
+            elif demo == 35:
+                Pattern = OK_GO_RED
+            elif demo == 36:
+                Pattern = OK_GO_ORANGE
+            elif demo == 37:
+                Pattern = OK_GO_WHITE
 
         cmd_dict.append("CLR")
 
@@ -209,7 +227,7 @@ class BrowserApi:
                     cmd_dict.append(self._dim_light_cmd(Pattern[y]))
                 elif self._max_lights == 0:
                     return
-                else: 
+                else:
                     cmd_dict.append(Pattern[y])
 
         # Cleanup
