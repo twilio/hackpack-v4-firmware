@@ -15,6 +15,8 @@ sudo mkdir /home/pi/hp_tmp
 #sudo touch /home/pi/hp_tmp/.hp_storage_
 #sudo chown -R pi:pi /home/pi/hp_tmp/.hp_storage_
 
+sudo chmod -R a+w /home/hp_tmp
+
 #sudo touch /home/pi/hp_tmp/.authtoken
 #sudo chown -R pi:pi /home/pi/hp_tmp/.authtoken
 
