@@ -15,6 +15,12 @@ print(a.changeTouchscreenMode("{u'xy': 1, u'lr': 0, u'ud': 0}"))
 print("Check WiFi")
 print(a.checkWifiConnection("{}"))
 
+print("WiFi Power Manage Off")
+print(a.wifiPowerManagementOff("{}"))
+
+print("WiFi Power Manage On")
+print(a.wifiPowerManagementOn("{}"))
+
 print("Get, set, get auth")
 print("Remove Auth Token")
 print(a.removeAuthToken("{}"))

@@ -333,6 +333,20 @@ class BrowserApi:
         }
         return json.dumps(response)
 
+    def wifiPowerManagementOff(self, params):
+        print(os.system("sudo iwconfig wlan0 power off"))
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+    def wifiPowerManagementOn(self, params):
+        print(os.system("sudo iwconfig wlan0 power on"))
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
     def getAuthToken(self, params):
         # Read AuthToken from file
         try:

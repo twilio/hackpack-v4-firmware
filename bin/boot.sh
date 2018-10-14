@@ -10,6 +10,8 @@ sleep 1s
 # We use the /home/pi/drivers dir we copied locally during install to avoid a git pull collision on an
 # actively in-use driver
 
+sudo iwconfig wlan0 power off
+
 python /home/pi/firmware/kiosk/kiosk.py &
 
 sudo bash /home/pi/firmware/bin/system/io/input_driver.sh &
