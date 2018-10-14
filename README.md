@@ -52,17 +52,11 @@ What Hackpack would be complete without NeoPixels? Your
 Hackpack v4 sports 5 RGB NeoPixels, with a custom-built
 unix socket that lets you control light patterns from
 
-
 ####  Onboard Gamepad
 
 The `/drivers` directory contains all functionality
 that drives the custom inputs on the device - namely
 the joystick and control buttons.
-
-
-### Communications Pipeline
-
-tbd
 
 ## System Control
 
