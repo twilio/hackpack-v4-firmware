@@ -35,7 +35,7 @@ from stored_patterns import OK_GO_PURPLE, OK_GO_RED, OK_GO_ORANGE, OK_GO_WHITE
 
 HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
 CURRENT_URL = HACKPACK_URL
-_max_lights = 100
+_max_lights = 15
 _is_debug = False
 
 # Number of ESCAPE taps in a row to send user URL back to home
