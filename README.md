@@ -1,6 +1,6 @@
 # Hackpack v4 Firmware
 
-## What is a Hackpack?
+## What is Hackpack?
 
 Hackpack v4 is a limited-run hardware device distributed at SIGNAL 2018 - Twilio's Customer & Developer conference. Hackpack is your 8-bit companion through the conference, letting you interact with the environment, build an avatar, level up and earn coins.
 
