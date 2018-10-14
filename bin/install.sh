@@ -122,7 +122,7 @@ sudo cp -r /home/pi/firmware/assets/config /home/pi/.config
 
 # Cleanup
 sudo apt-get purge -y libreoffice wolfram-engine sonic-pi scratch
-sudo apt-get autoremove
+sudo apt-get -y autoremove
 
 echo ""
 echo "--------------------------------------------------"
