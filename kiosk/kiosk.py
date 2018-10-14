@@ -57,7 +57,7 @@ class BrowserApi:
     _LIGHTSOCKET_PACKET_LENGTH = 100
     _client = None
     _HW_ID = None
-    _is_debug = False
+    _is_debug = True
 
     def __init__(self, debug):
         self.default_variable = False
@@ -791,13 +791,18 @@ def on_release(key):
         if CURRENT_URL is not HACKPACK_URL:
             if _is_debug:
                 print("RESETTING!")
-            os.system(
-                'python '
-                '/home/pi/firmware/drivers/leds/light_client/lightclient.py '
-                '-d 24 -r 5 -i '+_max_lights
-            )
             CURRENT_URL = HACKPACK_URL
             webview.load_url(HACKPACK_URL)
+            os.system(' '.join([
+                'python',
+                '/home/pi/firmware/drivers/leds/light_client/lightclient.py',
+                '-d',
+                '24',
+                '-r',
+                '5',
+                '-i',
+                str(_max_lights)
+            ]))
 
 
 def listen_keys():
