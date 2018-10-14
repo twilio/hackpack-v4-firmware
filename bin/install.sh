@@ -83,6 +83,7 @@ sudo apt-get install --no-install-recommends -y libgtk-3.0
 sudo apt-get install --no-install-recommends -y matchbox
 
 sudo pip install pywebview[gtk3]
+sudo bash /home/pi/firmware/kiosk/bin/install.sh
 
 echo ""
 echo "--------------------------------------------------"
