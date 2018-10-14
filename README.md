@@ -26,7 +26,7 @@ https://www.raspberrypi.org/downloads/raspbian/
 ### Get the codebase
 
 To get started, clone this repo into `/home/pi/firmware`. The codebase depends on
-being installed at /home/pi/firmware currently.
+being installed at `/home/pi/firmware` currently.
 
 Once cloned locally, run:
 
@@ -41,7 +41,7 @@ scripts for each system component - drivers, and kiosk.
 
 #### Onboard Screen
 
-Your Hackpack v4 is equipped with a capacitive-touch
+Your Hackpack v4 is equipped with a resistive-touch
 screen, which duplicates the video output that can also be displayed normally via the HDMI output of the
 Raspberry Pi.
 
