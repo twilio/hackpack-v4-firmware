@@ -15,8 +15,6 @@ sudo mkdir /home/pi/hp_tmp
 #sudo touch /home/pi/hp_tmp/.hp_storage_
 #sudo chown -R pi:pi /home/pi/hp_tmp/.hp_storage_
 
-sudo chmod -R a+w /home/pi/hp_tmp
-
 #sudo touch /home/pi/hp_tmp/.authtoken
 #sudo chown -R pi:pi /home/pi/hp_tmp/.authtoken
 
@@ -104,6 +102,27 @@ cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-config /home/pi/doom
 cp /home/pi/firmware/assets/chocolate-doom/.chocolate-doom-extra-config /home/pi/doom
 sudo apt-get install -y libsdl1.2debian libsdl-image1.2 libsdl-mixer1.2 timidity
 sudo apt-get install -y libsdl-mixer1.2-dev libsdl-net1.2 libsdl-net1.2-dev 
+
+echo ""
+echo "--------------------------------------------------"
+echo ""
+echo "(7 of 5) Final steps and aesthetics"
+echo ""
+echo "--------------------------------------------------"
+echo ""
+# Own all the things!
+sudo chown -R pi:pi /home/pi/
+
+# Execute all the bins!
+chmod -R 755 /home/pi/firmware/bin/
+
+# Set wallpaper & aesthetics
+sudo pcmanfm --set-wallpaper /home/pi/firmware/assets/images/wallpaper.png
+sudo cp -r /home/pi/firmware/assets/config /home/pi/.config
+
+# Cleanup
+sudo apt-get purge -y libreoffice wolfram-engine sonic-pi scratch
+sudo apt-get autoremove
 
 echo ""
 echo "--------------------------------------------------"
