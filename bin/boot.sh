@@ -11,6 +11,7 @@ sleep 1s
 # actively in-use driver
 
 sudo iwconfig wlan0 power off
+sleep 2s
 
 python /home/pi/firmware/kiosk/kiosk.py &
 
