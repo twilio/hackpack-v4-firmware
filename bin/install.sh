@@ -116,8 +116,9 @@ sudo chown -R pi:pi /home/pi/
 # Execute all the bins!
 chmod -R 755 /home/pi/firmware/bin/
 
-# Set wallpaper
+# Set wallpaper & aesthetics
 sudo pcmanfm --set-wallpaper /home/pi/firmware/assets/images/wallpaper.png
+sudo cp -r /home/pi/firmware/assets/config /home/pi/.config
 
 # Cleanup
 sudo apt-get purge -y libreoffice wolfram-engine sonic-pi scratch

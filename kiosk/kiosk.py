@@ -14,6 +14,7 @@ import time
 import webview
 import collections
 import random
+import math
 from pynput import keyboard
 
 # Import LED python library
@@ -32,6 +33,7 @@ from stored_patterns import Inv_Blue_Wave, Inv_Violet_Wave, Inv_Yellow_Wave
 
 HACKPACK_URL = 'https://hackpack-server.herokuapp.com'
 CURRENT_URL = HACKPACK_URL
+_max_lights = 100
 _is_debug = False
 
 # Number of ESCAPE taps in a row to send user URL back to home
@@ -59,6 +61,7 @@ class BrowserApi:
         self.default_variable = False
         self._is_debug = debug
         self._HW_ID = self._get_hw_id()
+        self._max_lights = _max_lights
         if self._is_debug:
             print(self._HW_ID)
 
@@ -81,6 +84,20 @@ class BrowserApi:
             hw_id = "ERROR000000000"
 
         return hw_id
+
+    def _dim_light_cmd(self, cmd, dim=None):
+        if not dim:
+            dim = self._max_lights
+        if self._is_debug:
+            print(cmd)
+        factor = float(dim) / float(100)
+        lcmd = cmd.split(',')
+        for i, intensity in enumerate(lcmd[:-1]):
+            lcmd[i] = int(float(intensity) * factor)
+        dimmed_lights = ','.join([str(i) for i in lcmd])
+        if self._is_debug:
+            print(dimmed_lights)
+        return dimmed_lights
 
     def call_light_sequence(self, light_commands):
         try:
@@ -188,7 +205,12 @@ class BrowserApi:
 
         for x in range(0, repeat_times):
             for y in range(0, len(Pattern)):
-                cmd_dict.append(Pattern[y])
+                if self._max_lights < 100:
+                    cmd_dict.append(self._dim_light_cmd(Pattern[y]))
+                elif self._max_lights == 0:
+                    return
+                else: 
+                    cmd_dict.append(Pattern[y])
 
         # Cleanup
         if not noclear:
@@ -408,12 +430,8 @@ class BrowserApi:
         return json.dumps(response)
 
     def showLights(self, params):
-        # Use subprocess.call if you don't need an output
-        subprocess.call(
-            "sudo /home/pi/firmware/bin/system/etc/lights_scanner.sh",
-            stderr=subprocess.STDOUT,
-            shell=True
-        )
+        # Show scanner
+        self.run_lights(1, 3)
         response = {
             'message': 'ok'
         }
@@ -460,6 +478,51 @@ class BrowserApi:
             'message': 'ok'
         }
         return json.dumps(response)
+
+    def lightsOff(self, params):
+        # Use subprocess.call if you don't need an output
+        cmd_dict = []
+        cmd_dict.append("CLR")
+        cmd_dict.append("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1")
+        cmd_dict.append("SHW")
+        self.call_light_sequence(cmd_dict)
+        response = {
+            'message': 'ok'
+        }
+        return json.dumps(response)
+
+    def setLightIntensity(self, params):
+        global _max_lights
+        if self._is_debug:
+            print(params)
+        p = self.parse_react_json(params)
+        if p == '':
+            response = {
+                'message': ''
+            }
+            return json.dumps(response)
+
+        if u'intensity' in p:
+            try:
+                new_int = int(p[u'intensity'])
+                if new_int >= 0 and new_int <= 100:
+                    _max_lights = new_int
+                    self._max_lights = new_int
+                    if self._is_debug:
+                        print("New intensity: " + _max_lights)
+                    response = {
+                        'message': 'ok'
+                    }
+                    return json.dumps(response)
+            except:
+                pass
+
+        response = {
+            'message': ''
+        }
+        return json.dumps(response)
+
+
 
     def changeWebView(self, params):
         # Add key 'url' with a URL to change
@@ -711,7 +774,7 @@ def file_monitor():
                     webview.load_url(_current_url)
 
 def on_release(key):
-    global CURRENT_URL, HACKPACK_URL, _is_debug
+    global CURRENT_URL, HACKPACK_URL, _is_debug, _max_lights
     if _is_debug:
         print('{0} released'.format(key))
     circular_keys.append(key)
@@ -726,7 +789,7 @@ def on_release(key):
             os.system(
                 'python '
                 '/home/pi/firmware/drivers/leds/light_client/lightclient.py '
-                '-d 24 -r 5'
+                '-d 24 -r 5 -i '+_max_lights
             )
             CURRENT_URL = HACKPACK_URL
             webview.load_url(HACKPACK_URL)

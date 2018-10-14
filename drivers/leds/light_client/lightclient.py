@@ -5,11 +5,8 @@ import time
 import optparse
 from stored_patterns import LED_Scanner, White_Swell, Rainbow, USA, USA_Swell, Gold_Swell
 from stored_patterns import Vote_1, Vote_2, Vote_3, Vote_4, Vote_5
-
 from stored_patterns import Pong_Cyan, Pong_Green, Pong_Red, Pong_Blue, Pong_Violet, Pong_Yellow
-
 from stored_patterns import Cyan_Wave, Green_Wave, Red_Wave, Blue_Wave, Violet_Wave, Yellow_Wave
-
 from stored_patterns import Inv_Cyan_Wave, Inv_Green_Wave, Inv_Red_Wave, Inv_Blue_Wave, Inv_Violet_Wave, Inv_Yellow_Wave
 
 packet_length = 100
@@ -22,6 +19,14 @@ def _send_to_lightsocket(output):
     client.sendall(output)
     #client.send("\n")
 
+def _dim_light_cmd(cmd, dim):
+    factor = float(dim) / float(100)
+    lcmd = cmd.split(',')
+    for i, intensity in enumerate(lcmd[:-1]):
+        lcmd[i] = int(float(intensity) * factor)
+    dimmed_lights = ','.join([str(i) for i in lcmd])
+    return dimmed_lights
+
 if __name__ == "__main__":
 
     parser = optparse.OptionParser()
@@ -29,7 +34,9 @@ if __name__ == "__main__":
     parser.add_option("-p", "--path", dest="path", default="/dev/lightsocket",
         help="Path to light socket", metavar="PATH")
     parser.add_option("-d", "--demo", dest="demo", default=1, type="int",
-        help="Built-in demo [0-18]", metavar="DEMO")
+        help="Built-in demo [0-29]", metavar="DEMO")
+    parser.add_option("-i", "--intensity", dest="intensity", default=100, type="int",
+        help="Light Brightness [0-100]", metavar="INTENSITY")
     parser.add_option("-n", "--noclear", action="store_true", dest="noclear", default=False,
         help="Don't clear at end", metavar="NOCLEAR")
     parser.add_option("-r", "--repeat", dest="repeat", default=3, type="int",
@@ -104,6 +111,12 @@ if __name__ == "__main__":
         elif demo == 29:
             Pattern = Inv_Yellow_Wave
 
+    intensity = options.intensity
+    if intensity < 0:
+        intensity = 0
+    elif intensity > 100:
+        intensity = 100
+
     if os.path.exists( options.path ):
         client.connect( options.path )
     else:
@@ -115,8 +128,13 @@ if __name__ == "__main__":
     repeat_times = options.repeat
     for x in range(0, repeat_times):
         for y in range(0, len(Pattern)):
-            _send_to_lightsocket(Pattern[y])
-            #time.sleep(.0005)
+            if intensity == 0:
+                pass
+            elif intensity == 100:
+                _send_to_lightsocket(Pattern[y])
+                #time.sleep(.0005)
+            else:
+                _send_to_lightsocket(_dim_light_cmd(Pattern[y], intensity))
 
     # Cleanup
     noclear = options.noclear
