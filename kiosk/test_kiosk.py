@@ -1,12 +1,11 @@
 import kiosk
 import time
 
-a = kiosk.Api()
+a = kiosk.BrowserApi()
 
 print("Touch")
 print(a.changeTouchscreenMode("{}"))
 print(a.changeTouchscreenMode("{u'xy': 1, u'lr': 0, u'ud': 0}"))
-
 
 print("Check WiFi")
 print(a.checkWifiConnection("{}"))
