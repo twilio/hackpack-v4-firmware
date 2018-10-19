@@ -4,7 +4,7 @@ sudo modprobe -i uinput
 sleep 1s
 
 # Commented out after SIGNAL, this launched the Kiosk at the conference.
-python /home/pi/firmware/kiosk/kiosk.py &
+# python /home/pi/firmware/kiosk/kiosk.py &
 
 
 # Init input drivers
