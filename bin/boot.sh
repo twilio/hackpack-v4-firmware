@@ -1,17 +1,15 @@
-
-
-
 # Turn on drivers
 
 sudo modprobe -i uinput
 sleep 1s
 
+# Commented out after SIGNAL, this launched the Kiosk at the conference.
+python /home/pi/firmware/kiosk/kiosk.py &
+
+
 # Init input drivers
 # We use the /home/pi/drivers dir we copied locally during install to avoid a git pull collision on an
 # actively in-use driver
-
-python /home/pi/firmware/kiosk/kiosk.py &
-
 sudo bash /home/pi/firmware/bin/system/io/input_driver.sh &
 sleep 1s
 
