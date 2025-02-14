@@ -4,33 +4,36 @@
 # ------------------------------------------------------------------------------------
 
 
-# Set screen size to 640x480
+# Pi Zero 2W Configuration for Hackpack v4
+
+# Display Configuration
 framebuffer_width=640
 framebuffer_height=480
-
-# Enable high-current usb devices
-max_usb_current=1
-
-# Add TTY to serial header
-enable_uart=1
-
-# Disable overscan to remove border of unusable black pixels on screen
 disable_overscan=1
 
-# The display utilizes SPI, but not spidev
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# SPI Configuration for Display
+dtparam=spi=on
 dtoverlay=spi1-3cs
 
-sdtv_mode=1
-sdtv_aspect=1
+# Enable I2C for peripherals
+dtparam=i2c_arm=on
+dtparam=i2c=on
 
-# Enable High-current USB Devices
+# USB Configuration
 max_usb_current=1
 
-# Turn off rainbow boot
-disable_splash=1
+# Serial Console
+enable_uart=1
 
-# Hijack PWM
+# Audio Configuration
 dtparam=audio=on
 
-# Enable i2c
-dtparam=i2c_arm=on
+# Disable Boot Splash
+disable_splash=1
+
+# GPU Memory (important for display)
+gpu_mem=128

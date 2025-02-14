@@ -15,13 +15,23 @@ onboard screen, LEDs, and gamepad.
 
 ## Installation
 
-### Boot up a Raspberry Pi with Raspbian
+### Set up your Raspberry Pi
 
-To get started, you'll need to set up a standard Raspberry Pi with the current Raspian image. Hackpack v4 requires Raspbian rather than Raspian Lite, due to depending on the Raspbian desktop window manager for its 8-bit glory.
+This firmware now supports both Raspberry Pi Zero W and Raspberry Pi Zero 2W!
 
-You can get the image files at the Raspberry Pi foundation's website:
+To get started, you'll need to set up your Pi with the current Raspberry Pi OS (formerly Raspbian). The firmware requires the full desktop version, not Lite, as it depends on the desktop window manager.
 
-https://www.raspberrypi.org/downloads/raspbian/
+#### For Pi Zero W:
+- Use the 32-bit version of Raspberry Pi OS
+- Download from: https://www.raspberrypi.com/software/operating-systems/
+- Choose: "Raspberry Pi OS with desktop"
+
+#### For Pi Zero 2W:
+- You can use either 32-bit or 64-bit version (64-bit recommended)
+- Download from: https://www.raspberrypi.com/software/operating-systems/
+- Choose: "Raspberry Pi OS (64-bit) with desktop"
+
+The firmware will automatically detect your Pi model and apply the appropriate configuration.
 
 ### Get the codebase
 

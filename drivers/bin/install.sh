@@ -1,16 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install prerequisites
 
-sudo pip install python-uinput
+# Detect Pi model
+PI_MODEL=$(/home/pi/firmware/bin/detect_model.sh)
 
-# Overlay /boot/config.txt with Hackpack config
+# Install Python packages using pip3
+sudo pip3 install python-uinput
+sudo pip3 install RPi.GPIO
+sudo pip3 install spidev
 
+# Overlay appropriate config.txt based on Pi model
 echo ""
-echo "Installing Hackpack boot configuration..."
+echo "Installing Hackpack boot configuration for $PI_MODEL..."
 echo ""
 
-sudo cp /home/pi/firmware/bin/root/boot/config.txt /boot/config.txt
+if [ "$PI_MODEL" = "zero2" ]; then
+    sudo cp /home/pi/firmware/bin/root/boot/config_zero2w.txt /boot/config.txt
+    echo "Installed Zero 2W configuration"
+elif [ "$PI_MODEL" = "zerow" ]; then
+    sudo cp /home/pi/firmware/bin/root/boot/config_zerow.txt /boot/config.txt
+    echo "Installed Zero W configuration"
+else
+    echo "Unknown Pi model. Please ensure you're using a Pi Zero W or Pi Zero 2W"
+    exit 1
+fi
 
 # Add predefined wifi networks Hackpack can join
 
