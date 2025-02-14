@@ -1,0 +1,32 @@
+# Pi Zero W Configuration for Hackpack v4
+
+# Display Configuration
+framebuffer_width=640
+framebuffer_height=480
+disable_overscan=1
+
+# Legacy graphics driver (better compatibility for Zero W)
+dtoverlay=spi1-3cs
+sdtv_mode=1
+sdtv_aspect=1
+
+# SPI Configuration for Display
+dtparam=spi=on
+
+# Enable I2C for peripherals
+dtparam=i2c_arm=on
+
+# USB Configuration
+max_usb_current=1
+
+# Serial Console
+enable_uart=1
+
+# Audio Configuration
+dtparam=audio=on
+
+# Disable Boot Splash
+disable_splash=1
+
+# GPU Memory (conservative for Zero W)
+gpu_mem=64

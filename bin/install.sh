@@ -1,16 +1,25 @@
 
 
+#!/bin/bash
+
+# Make detect_model.sh executable
+chmod +x /home/pi/firmware/bin/detect_model.sh
+
+# Detect Pi model
+PI_MODEL=$(/home/pi/firmware/bin/detect_model.sh)
+
+echo "Detected Raspberry Pi model: $PI_MODEL"
+
 # Install basic system dependencies
-
 echo ""
 echo "--------------------------------------------------"
 echo ""
-echo "(1 of 5) Installing system basics..."
+echo "(1 of 5) Installing system basics for $PI_MODEL..."
 echo ""
 echo "--------------------------------------------------"
 echo ""
 
-sudo mkdir /home/pi/hp_tmp
+sudo mkdir -p /home/pi/hp_tmp
 
 #sudo touch /home/pi/hp_tmp/.hp_storage_
 #sudo chown -R pi:pi /home/pi/hp_tmp/.hp_storage_
@@ -18,14 +27,16 @@ sudo mkdir /home/pi/hp_tmp
 #sudo touch /home/pi/hp_tmp/.authtoken
 #sudo chown -R pi:pi /home/pi/hp_tmp/.authtoken
 
+# Update package lists and install required packages
 sudo apt-get update
-sudo apt-get install --no-install-recommends -y git
-sudo apt-get install --no-install-recommends -y chromium-browser
+sudo apt-get install --no-install-recommends -y git chromium-browser python3-pip python3-setuptools
 
-# Install NodeJS
+# Install Node.js using the NodeSource repository
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
-sudo apt-get install --no-install-recommends -y nodejs
-sudo apt-get install --no-install-recommends -y npm
+# Update npm to latest version
+sudo npm install -g npm@latest
 
 # Run Driver install script
 

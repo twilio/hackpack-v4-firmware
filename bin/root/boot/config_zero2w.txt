@@ -1,0 +1,33 @@
+# Pi Zero 2W Configuration for Hackpack v4
+
+# Display Configuration
+framebuffer_width=640
+framebuffer_height=480
+disable_overscan=1
+
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# SPI Configuration for Display
+dtparam=spi=on
+dtoverlay=spi1-3cs
+
+# Enable I2C for peripherals
+dtparam=i2c_arm=on
+dtparam=i2c=on
+
+# USB Configuration
+max_usb_current=1
+
+# Serial Console
+enable_uart=1
+
+# Audio Configuration
+dtparam=audio=on
+
+# Disable Boot Splash
+disable_splash=1
+
+# GPU Memory (important for display)
+gpu_mem=128
