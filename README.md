@@ -1,37 +1,124 @@
-# Hackpack v4 Firmware
+<div align="center">
 
-## What is Hackpack?
+# 🎮 Hackpack v4 Firmware
 
-Hackpack v4 is a limited-run hardware device distributed at SIGNAL 2018 - Twilio's Customer & Developer conference. Hackpack is your 8-bit companion through the conference, letting you interact with the environment, build an avatar, level up and earn coins.
+*Your retro-gaming companion powered by Raspberry Pi!*
 
-### But Technically What is it?
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi-brightgreen.svg)](https://www.raspberrypi.com/)
+[![OS](https://img.shields.io/badge/OS-Raspberry%20Pi%20OS-blue.svg)](https://www.raspberrypi.com/software/)
 
-At it's heart, Hackpack v4 is a Raspberry Pi Zero W equipped with a color TFT screen, a joystick, six game buttons, and a 5-NeoPixel LED bar. It boots into a custom browser view that gives any website it loads access to the joystick, game buttons, and control of the lights on the LED bar.
+<img src="bin/root/opt/splash.png" alt="Hackpack Logo" width="400"/>
 
-### Firmware
+</div>
 
-Hackpack v4 Firmware manages system-level components for the Hackpack v4 hardware drivers that manage the
-onboard screen, LEDs, and gamepad.
+## 🚀 What is Hackpack?
 
-## Installation
+Hackpack v4 is your ultimate retro-gaming companion! Originally distributed at SIGNAL 2018 (Twilio's Developer Conference), it's now been updated to support both Raspberry Pi Zero W and Zero 2W! 
 
-### Set up your Raspberry Pi
+### 🛠️ Hardware Features
 
-This firmware now supports both Raspberry Pi Zero W and Raspberry Pi Zero 2W!
+- 🖥️ Vibrant Color TFT Screen
+- 🕹️ Responsive Joystick
+- 🎮 6 Gaming Buttons
+- 💡 5-NeoPixel LED Light Bar
+- 🧠 Raspberry Pi Zero W/2W Brain
 
-To get started, you'll need to set up your Pi with the current Raspberry Pi OS (formerly Raspbian). The firmware requires the full desktop version, not Lite, as it depends on the desktop window manager.
+### 🎯 Key Features
 
-#### For Pi Zero W:
-- Use the 32-bit version of Raspberry Pi OS
-- Download from: https://www.raspberrypi.com/software/operating-systems/
-- Choose: "Raspberry Pi OS with desktop"
+- 🌈 Custom Browser Interface
+- 🎮 Full Gamepad Support
+- 💫 LED Light Control
+- 🔄 Auto Hardware Detection
+- ⚡ Optimized Performance
 
-#### For Pi Zero 2W:
-- You can use either 32-bit or 64-bit version (64-bit recommended)
-- Download from: https://www.raspberrypi.com/software/operating-systems/
-- Choose: "Raspberry Pi OS (64-bit) with desktop"
+## 🔧 Installation
 
-The firmware will automatically detect your Pi model and apply the appropriate configuration.
+### Step 1: Choose Your Hardware
+
+#### 🔵 Raspberry Pi Zero W
+```markdown
+✨ Perfect for Classic Gaming
+📥 Use 32-bit Raspberry Pi OS
+🔗 Download: raspberrypi.com/software
+📦 Select: "Raspberry Pi OS with desktop"
+```
+
+#### 🔴 Raspberry Pi Zero 2W (Recommended)
+```markdown
+🚀 Enhanced Performance
+📥 Use 64-bit Raspberry Pi OS
+🔗 Download: raspberrypi.com/software
+📦 Select: "Raspberry Pi OS (64-bit) with desktop"
+```
+
+### Step 2: Install the Firmware
+
+1. Clone this repository:
+```bash
+git clone https://github.com/YourUsername/hackpack-v4-firmware.git /home/pi/firmware
+```
+
+2. Run the installer:
+```bash
+sudo bash /home/pi/firmware/bin/install.sh
+```
+
+🎯 The firmware will automatically detect your Pi model and apply the optimal configuration!
+
+## 🎮 Features
+
+### 🖥️ Display
+Crisp, responsive display with optimized refresh rates for both Pi models:
+- Zero W: Classic mode with perfect compatibility
+- Zero 2W: Enhanced mode with improved performance
+
+### 🕹️ Controls
+- Precise joystick input
+- 6 responsive gaming buttons
+- USB keyboard support
+
+### 💡 LED System
+- 5 programmable RGB NeoPixels
+- Custom animation support
+- Interactive light patterns
+
+## 🛠️ Development
+
+### Prerequisites
+- Raspberry Pi Zero W or Zero 2W
+- Raspberry Pi OS (32/64-bit)
+- Basic Linux knowledge
+
+### Building from Source
+```bash
+# Install development dependencies
+sudo apt-get install git python3-pip nodejs npm
+
+# Clone and build
+git clone https://github.com/YourUsername/hackpack-v4-firmware.git
+cd hackpack-v4-firmware
+sudo bash bin/install.sh
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Feel free to:
+- 🐛 Report bugs
+- 💡 Suggest features
+- 🔧 Submit pull requests
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+<div align="center">
+
+### 🎮 Happy Gaming! 🕹️
+
+</div>
 
 ### Get the codebase
 
