@@ -1,0 +1,20 @@
+[connection]
+id=SETUP-06D9
+uuid=9fcb3b6c-4a3f-4d9c-8f4a-5e3d4b7c6a8d
+autoconnect=true
+
+# This configuration is compatible with both Raspberry Pi Zero W and Zero 2W
+
+[wifi]
+mode=infrastructure
+ssid=SETUP-06D9
+
+[wifi-security]
+key-mgmt=wpa-psk
+psk=<YOUR_PASSWORD_HERE>
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=ignore

@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Driver setup
+sudo chgrp -R ghost /sys/class/gpio
+sudo chmod -R g+rw /sys/class/gpio
+
+# Start the kiosk browser (pyapi)
+python /home/ghost/hackpack-server/pybin/kiosk.py
+
+# JIC
+sleep 7s
+
+# Driver probe
+sudo modprobe -i uinput
+
+# JIC
+sleep 1s
+
+# Input drivers
+sudo bash /home/ghost/firmware/bin/system/io/input_driver.sh &
+
+# Display drivers
+sleep 1s
+sudo echo "5" > /sys/class/gpio/export
+
+# GPIO direction
+sleep 1s
+sudo echo "out" > /sys/class/gpio/gpio5/direction
+
+# Active low, set to 0 to enable
+sleep 1s
+sudo echo "0" > /sys/class/gpio/gpio5/value
+sleep 1s
+
+# Framebuffer
+sudo /home/ghost/drivers/video/fbcp-ili9341 &
+
+# Lights 
+sudo /home/ghost/bin/init/lights.sh
+sudo /home/ghost/drivers/leds/open_lightsocket &
+
+# Display startup lights
+sleep .1s
+python /home/ghost/firmware/drivers/leds/lib_python/led_client.py -d 1 -r 10

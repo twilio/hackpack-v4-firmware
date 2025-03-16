@@ -1,24 +1,17 @@
-
-import ast
-import fcntl
-import json
-import os
-import sys
-import struct
-import socket
-import struct
-import subprocess
-import sys
-import threading
-import time
-import webview
-import collections
-import random
-import math
-from pynput import keyboard
+"""
+Kiosk features have been removed to focus on Python development.
+"""
 
 # Import LED python library
-FIRMWARE_PATH = '/home/pi/firmware'
+import platform
+import sys
+import os
+
+if platform.system() == 'Linux' and 'kali' in platform.platform().lower():
+    FIRMWARE_PATH = '/usr/local/firmware'
+else:
+    FIRMWARE_PATH = '/home/ghost/firmware'
+
 sys.path.append(FIRMWARE_PATH + '/drivers/leds/lib_python')
 from led_client import LEDClient
 from stored_patterns import LED_Scanner, White_Swell, Rainbow
@@ -51,8 +44,8 @@ circular_keys.append(0)
 class BrowserApi:
     """Main Browser API exposed through the webview."""
 
-    _AUTHTOKEN_FILE = "/home/pi/hp_tmp/.authtoken"
-    _STORAGE_FILE = "/home/pi/hp_tmp/.hp_storage_"
+    _AUTHTOKEN_FILE = os.getenv("AUTHTOKEN_FILE", "/home/ghost/hp_tmp/.authtoken")
+    _STORAGE_FILE = os.getenv("STORAGE_FILE", "/home/ghost/hp_tmp/.hp_storage_")
     _LIGHTSOCKET_PATH = '/dev/lightsocket'
     _LIGHTSOCKET_PACKET_LENGTH = 100
     _client = None
@@ -313,7 +306,7 @@ class BrowserApi:
     def autoUpdate(self, params):
         # Use subprocess.check_output if you expect a response
         process = subprocess.check_output(
-            "sudo /home/pi/firmware/bin/system/etc/auto_update.sh",
+            "sudo /home/ghost/firmware/bin/system/etc/auto_update.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -324,7 +317,7 @@ class BrowserApi:
 
     def checkWifiConnection(self, params):
         process = subprocess.check_output(
-            "sudo bash /home/pi/firmware/bin/system/etc/check_wifi_curl.sh",
+            "sudo bash /home/ghost/firmware/bin/system/etc/check_wifi_curl.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -334,13 +327,10 @@ class BrowserApi:
         return json.dumps(response)
 
     def getAuthToken(self, params):
-        # Read AuthToken from file
+        # Read AuthToken from environment variable
         try:
-            f = open(self._AUTHTOKEN_FILE, "r")
-            value = f.read()
-            f.close()
+            value = os.getenv("AUTHTOKEN", "")
             response = {
-                # 'message': str(process).rstrip()
                 'message': value.rstrip()
             }
         except:
@@ -352,7 +342,7 @@ class BrowserApi:
     def setAuthToken(self, params):
         if self._is_debug:
             print(params)
-        # Write AuthToken to file
+        # Write AuthToken to environment variable
         p = self.parse_react_json(params)
         if p == '':
             response = {
@@ -361,9 +351,7 @@ class BrowserApi:
             return json.dumps(response)
 
         if u'authToken' in p:
-            f = open(self._AUTHTOKEN_FILE, "w")
-            f.write(p[u'authToken'])
-            f.close()
+            os.environ["AUTHTOKEN"] = p[u'authToken']
             response = {
                 'message': 'ok'
             }
@@ -414,7 +402,7 @@ class BrowserApi:
 
     def inputArrow(self, params):
         subprocess.Popen(
-            "sudo /home/pi/firmware/bin/system/io/input_arrow.sh",
+            "sudo /home/ghost/firmware/bin/system/io/input_arrow.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -425,7 +413,7 @@ class BrowserApi:
 
     def inputCursor(self, params):
         subprocess.call(
-            "sudo /home/pi/firmware/bin/system/io/input_cursor.sh",
+            "sudo /home/ghost/firmware/bin/system/io/input_cursor.sh",
             stderr=subprocess.STDOUT,
             shell=True
         )
@@ -514,7 +502,7 @@ class BrowserApi:
                     _max_lights = new_int
                     self._max_lights = new_int
                     if self._is_debug:
-                        print("New intensity: " + _max_lights)
+                        print("New intensity: " + str(_max_lights))
                     response = {
                         'message': 'ok'
                     }
@@ -567,11 +555,11 @@ class BrowserApi:
             [
                 "chocolate-doom",
                 "-iwad",
-                "/home/pi/doom/DOOM1.WAD",
+                "/home/ghost/doom/DOOM1.WAD",
                 "-config",
-                "/home/pi/doom/.chocolate-doom-config",
+                "/home/ghost/doom/.chocolate-doom-config",
                 "extraconfig",
-                "/home/pi/doom/.chocolate-doom-extra-config"
+                "/home/ghost/doom/.chocolate-doom-extra-config"
             ]
         )
         p.wait()
@@ -643,9 +631,9 @@ class BrowserApi:
             return json.dumps(response)
 
         command = "sudo bash -c" \
-                  "'touch /home/pi/.ili9341_touch.conf && echo \"" + \
+                  "'touch /home/ghost/.ili9341_touch.conf && echo \"" + \
                   str(xy) + str(ud) + str(lr) + \
-                  "\" > /home/pi/.ili9341_touch.conf'"
+                  "\" > /home/ghost/.ili9341_touch.conf'"
 
         if self._is_debug:
             print(command)
@@ -658,7 +646,7 @@ class BrowserApi:
             print(params)
 
         try:
-            os.system('sudo rm /home/pi/hp_tmp/.authtoken 2> /dev/null')
+            os.system('sudo rm /home/ghost/hp_tmp/.authtoken 2> /dev/null')
         except:
             pass
 
@@ -672,7 +660,7 @@ class BrowserApi:
             print(params)
 
         try:
-            os.system('find /home/pi/hp_tmp -mindepth 1 -delete')
+            os.system('find /home/ghost/hp_tmp -mindepth 1 -delete')
         except:
             pass
 
@@ -698,11 +686,11 @@ class BrowserApi:
 
         if u'message' in p:
             p_dict = p[u'message'].split(',')
-            print len(p_dict)
+            print(len(p_dict))
             if u'message' in p and len(p_dict) == 16:
                 cmd_dict = []
                 cmd_dict.append(p[u'message'])
-                print cmd_dict
+                print(cmd_dict)
                 self.call_light_sequence(cmd_dict)
                 response = {
                     'message': 'ok'
@@ -729,10 +717,10 @@ class BrowserApi:
             }
             return json.dumps(response)
 
-        if u'message' in p_dict and len(p_dict[u'message'].split(',')) == 16:
+        if u'message' in p and len(p[u'message'].split(',')) == 16:
             cmd_dict = []
             cmd_dict.append("CLR")
-            cmd_dict.append(p_dict[u'message'])
+            cmd_dict.append(p[u'message'])
             cmd_dict.append("SHW")
             self.call_light_sequence(cmd_dict)
             response = {
@@ -761,15 +749,15 @@ def file_monitor():
 
     while _fileMonitorActive:
         time.sleep(5)
-        print 'Checking file..'
+        print('Checking file..')
 
-        file_path = '/home/pi/config.txt'
+        file_path = '/home/ghost/config.txt'
         file_exists = os.path.isfile(file_path)
 
         # print('Current url: ' + _current_url)
 
         if file_exists:
-            f = open('/home/pi/config.txt', 'r')
+            f = open('/home/ghost/config.txt', 'r')
 
             if f.mode == 'r':
                 requested_url = f.read()
@@ -795,7 +783,7 @@ def on_release(key):
             webview.load_url(HACKPACK_URL)
             os.system(' '.join([
                 'python',
-                '/home/pi/firmware/drivers/leds/light_client/lightclient.py',
+                '/home/ghost/firmware/drivers/leds/light_client/lightclient.py',
                 '-d',
                 '24',
                 '-r',

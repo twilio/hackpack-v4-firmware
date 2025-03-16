@@ -1,3 +1,8 @@
+"""
+Input Driver for HackPack v4. 
+This driver has been modified to support OTG USB for mouse and keyboard input. 
+"""
+
 """HackPack v4 input driver.
 
 Written in python because C takes too long to prototype. Could be rewritten
@@ -16,6 +21,9 @@ import math
 import socket
 import fcntl
 import commands
+import platform
+import usb.core
+import usb.util
 
 # Turn on flood of messages
 DEBUG = False
@@ -79,7 +87,7 @@ LEFTRIGHT_INVERTED = False
 
 # To verify
 try:
-    TOUCH_CONF = commands.getstatusoutput("cat /home/pi/.ili9341_touch.conf")
+    TOUCH_CONF = commands.getstatusoutput("cat /home/ghost/.ili9341_touch.conf")
     print(TOUCH_CONF)
     XY_REVERSED, UPDOWN_INVERTED, LEFTRIGHT_INVERTED = \
         map(lambda x: bool(int(x)), list(TOUCH_CONF[1]))
@@ -131,7 +139,7 @@ if XY_REVERSED:
     X_ADDR, Y_ADDR = Y_ADDR, X_ADDR
 
 if DEBUG:
-    print SHUTDOWN_MAX, SLEEP_SEC, DEBOUNCE_POLLS_MIN
+    print(SHUTDOWN_MAX, SLEEP_SEC, DEBOUNCE_POLLS_MIN)
 
 
 def read_touch_screen(channel):
@@ -296,7 +304,7 @@ class ButtonState:
         cls.JOYSTICK_MODE = True
 
         if DEBUG:
-            print "Switching to JOYSTICK mode"
+            print ("Switching to JOYSTICK mode")
 
     @classmethod
     def switch_to_arrow_mode(cls):
@@ -319,7 +327,46 @@ class ButtonState:
 
         cls.JOYSTICK_MODE = False
         if DEBUG:
-            print "Switching to ARROW mode"
+            print ("Switching to ARROW mode")
+
+
+def detect_raspberry_pi_model():
+    model = platform.uname().machine
+    if 'armv6' in model:
+        return 'Zero W'
+    elif 'armv7' in model:
+        return 'Zero 2W'
+    else:
+        return 'Unknown'
+
+
+def initialize_otg_usb():
+    # Detect the architecture
+    architecture = platform.architecture()[0]
+    pi_model = detect_raspberry_pi_model()
+
+    if pi_model == 'Zero W' and architecture == '32bit':
+        # Find the USB device for Zero W (32-bit)
+        dev = usb.core.find(idVendor=0x03EB, idProduct=0x6124)  # Update with the correct vendor/product IDs
+    elif pi_model == 'Zero 2W' and architecture == '64bit':
+        # Find the USB device for Zero 2W (64-bit)
+        dev = usb.core.find(idVendor=0x03EB, idProduct=0x6125)  # Update with the correct vendor/product IDs
+    else:
+        print('Unsupported model or architecture')
+        return
+
+    # Check if the device was found
+    if dev is None:
+        print('USB device not found')
+        return
+
+    # Detach the kernel driver if necessary
+    if dev.is_kernel_driver_active(0):
+        dev.detach_kernel_driver(0)
+
+    # Claim the device
+    usb.util.claim_interface(dev, 0)
+    print('OTG USB initialized for mouse and keyboard')
 
 
 def main():
@@ -327,6 +374,12 @@ def main():
     global JOYSTICK_MODE, JOYSTICK_ON, TOUCH_ON, BUTTONS_ON
     global virtual_keyboard, virtual_mouse, virtual_touchscreen
     global ts, up_down, left_right
+
+    pi_model = detect_raspberry_pi_model()
+    print(f'Detected Raspberry Pi Model: {pi_model}')
+
+    # Initialize OTG USB support
+    initialize_otg_usb()
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -397,7 +450,7 @@ def main():
         os.remove(SOCKET_PATH)
 
     SOCK.bind(SOCKET_PATH)
-    os.chmod(SOCKET_PATH, 0777)
+    os.chmod(SOCKET_PATH, 0o777)
     fcntl.fcntl(SOCK, fcntl.F_SETFL, os.O_NONBLOCK)
 
     # Big loop incoming.

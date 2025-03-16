@@ -4,9 +4,10 @@
 # ------------------------------------------------------------------------------------
 
 
-# Set screen size to 640x480
-framebuffer_width=640
-framebuffer_height=480
+# Pi Zero 2W specific optimizations
+arm_boost=1
+arm_freq=1000
+gpu_freq=400
 
 # Enable high-current usb devices
 max_usb_current=1
@@ -34,3 +35,11 @@ dtparam=audio=on
 
 # Enable i2c
 dtparam=i2c_arm=on
+
+# Additional Pi Zero 2W compatibility
+dtoverlay=dwc2
+dtparam=spi=on
+
+# Additional recommended settings for Kali
+gpu_mem=256
+avoid_warnings=2
